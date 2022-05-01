@@ -20,12 +20,44 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="PAG-52-pz4">
                                 <rect key="frame" x="0.0" y="88" width="414" height="694"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="FWf-x4-RzL" detailTextLabel="5dY-2R-l4q" style="IBUITableViewCellStyleSubtitle" id="Snc-WP-VQa">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Snc-WP-VQa" id="J9C-jp-6U3">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FWf-x4-RzL">
+                                                    <rect key="frame" x="20" y="5" width="28.5" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5dY-2R-l4q">
+                                                    <rect key="frame" x="20" y="22" width="50" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sX-lv-bYJ">
-                                <rect key="frame" x="327" y="812" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sX-lv-bYJ">
+                                <rect key="frame" x="338" y="802" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Slj-c8-gFv"/>
+                                    <constraint firstAttribute="width" constant="36" id="cg2-om-Ikc"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="memoLogo"/>
+                                <connections>
+                                    <action selector="save:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lcd-ec-lVa"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -33,8 +65,10 @@
                         <constraints>
                             <constraint firstItem="PAG-52-pz4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7ol-fJ-B0z"/>
                             <constraint firstItem="PAG-52-pz4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8Mg-Qk-1qi"/>
+                            <constraint firstItem="4sX-lv-bYJ" firstAttribute="top" secondItem="PAG-52-pz4" secondAttribute="bottom" constant="20" id="NJZ-Ya-4oB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PAG-52-pz4" secondAttribute="trailing" id="Oat-ki-VOz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PAG-52-pz4" secondAttribute="bottom" constant="80" id="mWV-qK-qt5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4sX-lv-bYJ" secondAttribute="trailing" constant="40" id="oOb-oP-FEy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Lxp-V7-FQw"/>
@@ -62,6 +96,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="memoLogo" width="35" height="35"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -9,6 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBAction func save(_ sender: Any) {
+        print("Save Button Tapped!")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
