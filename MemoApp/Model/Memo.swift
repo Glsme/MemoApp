@@ -16,5 +16,7 @@ class Memo {
         self.date = Date()
     }
     
-    static var memoList: [Memo] = []
+    static var memoList: [Memo] = [
+        Memo.init(content: "Test 1")
+    ]
 }
