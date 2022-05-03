@@ -25,9 +25,22 @@ class ViewController: UIViewController {
         tableView.reloadData()
         print(#function)
     }
+    
+    var token: NSObjectProtocol?
+    
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        token = NotificationCenter.default.addObserver(forName: ComposeViewController.newMemoDisInsert, object: nil, queue: OperationQueue.main, using: { [weak self] (noit) in
+            self?.tableView.reloadData()
+        })
+        
     }
 }
 
