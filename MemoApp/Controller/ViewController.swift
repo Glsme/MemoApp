@@ -8,6 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     let formmater: DateFormatter = {
        let f = DateFormatter()
         f.dateStyle = .short
@@ -15,6 +18,13 @@ class ViewController: UIViewController {
         f.locale = Locale(identifier: "Ko_kr")
         return f
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+        print(#function)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
