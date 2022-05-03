@@ -83,7 +83,7 @@
         <!--새로운 메모-->
         <scene sceneID="tvY-ME-8iO">
             <objects>
-                <viewController id="4oS-2w-zjy" sceneMemberID="viewController">
+                <viewController id="4oS-2w-zjy" customClass="ComposeViewController" customModule="MemoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cuk-OL-HFf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -107,9 +107,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="새로운 메모" id="ecy-15-IyS">
-                        <barButtonItem key="leftBarButtonItem" title="취소" id="Ms1-37-6OO"/>
-                        <barButtonItem key="rightBarButtonItem" title="저장" id="uWT-fL-7md"/>
+                        <barButtonItem key="leftBarButtonItem" title="취소" id="Ms1-37-6OO">
+                            <connections>
+                                <action selector="closeButton:" destination="4oS-2w-zjy" id="oJI-e7-sWh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="저장" id="uWT-fL-7md">
+                            <connections>
+                                <action selector="saveButton:" destination="4oS-2w-zjy" id="JlW-0Q-sNm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="memoTextView" destination="uwY-ui-fab" id="Hg5-8P-EeP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4bb-1U-6ra" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
