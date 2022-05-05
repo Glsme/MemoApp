@@ -18,7 +18,5 @@ class Memo {
     
     static var memoList: [Memo] = [
         Memo.init(content: "Test 1"),
-        Memo.init(content: "Test 2"),
-        Memo.init(content: "Test 3")
     ]
 }
