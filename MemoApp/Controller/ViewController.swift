@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let formmater: DateFormatter = {
+    let formatter: DateFormatter = {
        let f = DateFormatter()
         f.dateStyle = .short
         f.timeStyle = .short
@@ -33,7 +33,15 @@ class ViewController: UIViewController {
             NotificationCenter.default.removeObserver(token)
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
+            if let vc = segue.destination as? DetailViewController {
+                vc.memo = Memo.memoList[indexPath.row]
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +62,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let target = Memo.memoList[indexPath.row]
         cell.textLabel?.text = target.content
-        cell.detailTextLabel?.text = formmater.string(from: target.date)
+        cell.detailTextLabel?.text = formatter.string(from: target.date)
         
         return cell
     }
