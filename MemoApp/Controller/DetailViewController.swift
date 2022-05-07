@@ -10,6 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var memo: Memo?
+    @IBOutlet weak var memoTableView: UITableView!
     let formatter: DateFormatter = {
         let f = DateFormatter()
         f.dateStyle = .short
@@ -17,11 +18,27 @@ class DetailViewController: UIViewController {
         f.locale = Locale(identifier: "Ko_kr")
         return f
     }()
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination.children.first as? ComposeViewController {
+            vc.editTarget = memo
+        }
+    }
+    
+    var token: NSObjectProtocol?
+    
+    deinit {
+        if let token = token {
+            NotificationCenter.default.removeObserver(token)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        token = NotificationCenter.default.addObserver(forName: ComposeViewController.MemoDidChange, object: nil, queue: OperationQueue.main, using: { [weak self] (noti) in
+            self?.memoTableView.reloadData()
+        })
     }
 }
 

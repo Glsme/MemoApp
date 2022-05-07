@@ -9,6 +9,9 @@ import UIKit
 
 class ComposeViewController: UIViewController {
     
+    var editTarget: Memo?
+    var originalMemoContent: String?
+    
     @IBAction func closeButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -19,10 +22,15 @@ class ComposeViewController: UIViewController {
             return
         }
         
+        if let target = editTarget {
+            target.content = memo
+            NotificationCenter.default.post(name: ComposeViewController.MemoDidChange, object: nil)
+        } else {
+        
         let newMemo = Memo(content: memo)
         Memo.memoList.append(newMemo)
-        
         NotificationCenter.default.post(name: ComposeViewController.newMemoDisInsert, object: nil)
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -31,11 +39,19 @@ class ComposeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        if let memo = editTarget {
+            navigationItem.title = "메모 편집"
+            memoTextView.text = memo.content
+            originalMemoContent = memo.content
+        } else {
+            navigationItem.title = "새로운 메모"
+            memoTextView.text = ""
+        }
+//        memoTextView.delegate = self
     }
 }
 
 extension ComposeViewController {
     static let newMemoDisInsert = Notification.Name(rawValue: "newMemoDidInsert")
+    static let MemoDidChange = Notification.Name(rawValue: "MemoDidChange")
 }

@@ -28,14 +28,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FWf-x4-RzL">
-                                                    <rect key="frame" x="20" y="7.5" width="28.5" height="17"/>
+                                                    <rect key="frame" x="20" y="7" width="33" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5dY-2R-l4q">
-                                                    <rect key="frame" x="20" y="27" width="50" height="17"/>
+                                                    <rect key="frame" x="20" y="27.5" width="58.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -171,23 +171,15 @@
         <scene sceneID="7Y8-E7-M1t">
             <objects>
                 <viewController id="oiY-Om-cwF" customClass="DetailViewController" customModule="MemoApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="B5Y-zM-X6c">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="B5Y-zM-X6c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3j9-H6-WBM">
-                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <barButtonItem title="Item" id="Ai6-DE-zLK"/>
-                                </items>
-                                <color key="barTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oTP-Na-Bj9">
-                                <rect key="frame" x="20" y="88" width="374" height="730"/>
+                                <rect key="frame" x="20" y="88" width="374" height="680"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="730" id="hjx-6j-D20"/>
+                                    <constraint firstAttribute="height" constant="680" id="hjx-6j-D20"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="memoCell" textLabel="5VF-8T-0k8" style="IBUITableViewCellStyleDefault" id="GMU-1i-0Tt">
@@ -231,23 +223,34 @@
                                     <outlet property="dataSource" destination="oiY-Om-cwF" id="ct6-ei-IiE"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVT-dS-Eyg">
+                                <rect key="frame" x="338" y="808" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="17p-ug-TSo"/>
+                                    <constraint firstAttribute="height" constant="36" id="uu4-y6-sH2"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="memoLogo" title=""/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JZx-Xn-9e6"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="top" secondItem="JZx-Xn-9e6" secondAttribute="top" id="5k6-Ln-t7R"/>
-                            <constraint firstItem="oTP-Na-Bj9" firstAttribute="centerX" secondItem="3j9-H6-WBM" secondAttribute="centerX" id="CEg-GU-pwc"/>
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="centerX" secondItem="B5Y-zM-X6c" secondAttribute="centerX" id="FvN-tg-Ove"/>
-                            <constraint firstItem="3j9-H6-WBM" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" id="aOn-EJ-PNZ"/>
+                            <constraint firstItem="lVT-dS-Eyg" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" constant="40" id="GJs-4Q-jpF"/>
+                            <constraint firstAttribute="bottom" secondItem="lVT-dS-Eyg" secondAttribute="bottom" constant="50" id="SHW-qL-ycY"/>
                             <constraint firstItem="JZx-Xn-9e6" firstAttribute="trailing" secondItem="oTP-Na-Bj9" secondAttribute="trailing" constant="20" id="kkk-ct-hR4"/>
-                            <constraint firstItem="3j9-H6-WBM" firstAttribute="trailing" secondItem="JZx-Xn-9e6" secondAttribute="trailing" id="kon-fm-rJO"/>
-                            <constraint firstItem="3j9-H6-WBM" firstAttribute="leading" secondItem="JZx-Xn-9e6" secondAttribute="leading" id="lj2-9w-Z3X"/>
-                            <constraint firstItem="3j9-H6-WBM" firstAttribute="bottom" secondItem="JZx-Xn-9e6" secondAttribute="bottom" id="m36-3f-Cja"/>
+                            <constraint firstAttribute="trailing" secondItem="lVT-dS-Eyg" secondAttribute="trailing" constant="40" id="klJ-1A-leX"/>
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="leading" secondItem="JZx-Xn-9e6" secondAttribute="leading" constant="20" id="okk-7w-3Mk"/>
-                            <constraint firstItem="3j9-H6-WBM" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" id="qkg-eG-09e"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="F1V-ci-cCh"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="memoTableView" destination="oTP-Na-Bj9" id="rRZ-Bx-2ps"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUQ-0x-CUn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
