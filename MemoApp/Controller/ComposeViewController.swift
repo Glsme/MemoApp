@@ -49,6 +49,41 @@ class ComposeViewController: UIViewController {
         }
 //        memoTextView.delegate = self
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.presentationController?.delegate = self
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.presentationController?.delegate = nil
+    }
+}
+
+extension ComposeViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if let original = originalMemoContent, let edited = textView.text {
+            isModalInPresentation = original != edited
+        }
+    }
+}
+
+extension ComposeViewController: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
+        let alert = UIAlertController(title: "알림", message: "편집된 메모를 저장할까요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] (action) in
+            self?.saveButton(action)
+        }
+        alert.addAction(okAction)
+        
+        let cancerAction = UIAlertAction(title: "취소", style: .cancel) { [weak self] (action) in
+            self?.closeButton(action)
+        }
+        alert.addAction(cancerAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 extension ComposeViewController {

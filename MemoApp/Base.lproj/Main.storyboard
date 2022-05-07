@@ -28,14 +28,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FWf-x4-RzL">
-                                                    <rect key="frame" x="20" y="7" width="33" height="20.5"/>
+                                                    <rect key="frame" x="20" y="7.5" width="28.5" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5dY-2R-l4q">
-                                                    <rect key="frame" x="20" y="27.5" width="58.5" height="20.5"/>
+                                                    <rect key="frame" x="20" y="27" width="50" height="17"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -231,6 +231,9 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="memoLogo" title=""/>
+                                <connections>
+                                    <segue destination="pd7-m7-Bhn" kind="presentation" modalPresentationStyle="fullScreen" id="HdL-HP-fmX"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JZx-Xn-9e6"/>
@@ -239,6 +242,7 @@
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="top" secondItem="JZx-Xn-9e6" secondAttribute="top" id="5k6-Ln-t7R"/>
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="centerX" secondItem="B5Y-zM-X6c" secondAttribute="centerX" id="FvN-tg-Ove"/>
                             <constraint firstItem="lVT-dS-Eyg" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" constant="40" id="GJs-4Q-jpF"/>
+                            <constraint firstItem="lVT-dS-Eyg" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" constant="40" id="LPA-YQ-wS5"/>
                             <constraint firstAttribute="bottom" secondItem="lVT-dS-Eyg" secondAttribute="bottom" constant="50" id="SHW-qL-ycY"/>
                             <constraint firstItem="JZx-Xn-9e6" firstAttribute="trailing" secondItem="oTP-Na-Bj9" secondAttribute="trailing" constant="20" id="kkk-ct-hR4"/>
                             <constraint firstAttribute="trailing" secondItem="lVT-dS-Eyg" secondAttribute="trailing" constant="40" id="klJ-1A-leX"/>
@@ -257,6 +261,9 @@
             <point key="canvasLocation" x="2000.0000000000002" y="-162.05357142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="HdL-HP-fmX"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="memoLogo" width="35" height="35"/>
         <systemColor name="labelColor">
