@@ -235,6 +235,16 @@
                                     <segue destination="pd7-m7-Bhn" kind="presentation" modalPresentationStyle="fullScreen" id="HdL-HP-fmX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qy6-mb-wn3">
+                                <rect key="frame" x="40" y="813" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="7lC-8W-PUf"/>
+                                    <constraint firstAttribute="height" constant="36" id="pbS-zl-4wK"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JZx-Xn-9e6"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -242,8 +252,10 @@
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="top" secondItem="JZx-Xn-9e6" secondAttribute="top" id="5k6-Ln-t7R"/>
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="centerX" secondItem="B5Y-zM-X6c" secondAttribute="centerX" id="FvN-tg-Ove"/>
                             <constraint firstItem="lVT-dS-Eyg" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" constant="40" id="GJs-4Q-jpF"/>
+                            <constraint firstItem="qy6-mb-wn3" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" constant="45" id="Km7-iX-PhL"/>
                             <constraint firstItem="lVT-dS-Eyg" firstAttribute="top" secondItem="oTP-Na-Bj9" secondAttribute="bottom" constant="40" id="LPA-YQ-wS5"/>
                             <constraint firstAttribute="bottom" secondItem="lVT-dS-Eyg" secondAttribute="bottom" constant="50" id="SHW-qL-ycY"/>
+                            <constraint firstItem="qy6-mb-wn3" firstAttribute="leading" secondItem="B5Y-zM-X6c" secondAttribute="leading" constant="40" id="e6M-DK-bUX"/>
                             <constraint firstItem="JZx-Xn-9e6" firstAttribute="trailing" secondItem="oTP-Na-Bj9" secondAttribute="trailing" constant="20" id="kkk-ct-hR4"/>
                             <constraint firstAttribute="trailing" secondItem="lVT-dS-Eyg" secondAttribute="trailing" constant="40" id="klJ-1A-leX"/>
                             <constraint firstItem="oTP-Na-Bj9" firstAttribute="leading" secondItem="JZx-Xn-9e6" secondAttribute="leading" constant="20" id="okk-7w-3Mk"/>
@@ -266,6 +278,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="memoLogo" width="35" height="35"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
