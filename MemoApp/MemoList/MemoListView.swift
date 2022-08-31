@@ -19,13 +19,12 @@ class MemoListView: BaseView {
     
     let memoToolbar: UIToolbar = {
         let view = UIToolbar()
-        let memoButton = UIBarButtonItem()
-        memoButton.image = UIImage(systemName: "square.and.pencil")
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        view.setItems([flexibleSpace, memoButton], animated: true)
         
         return view
     }()
+    
+    let memoButton = UIBarButtonItem()
+    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +35,9 @@ class MemoListView: BaseView {
     }
     
     override func configureUI() {
+        memoButton.image = UIImage(systemName: "square.and.pencil")
+        memoToolbar.setItems([flexibleSpace, memoButton], animated: true)
+        
         [memoListTableView, memoToolbar].forEach {
             self.addSubview($0)
         }
