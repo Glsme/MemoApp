@@ -23,8 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.prefersLargeTitles = true
         navigationController.navigationBar.topItem?.title = "title"
-        navigationController.navigationBar.backgroundColor = .darkGray
-        navigationController.toolbar.backgroundColor = .darkGray
+        navigationController.navigationBar.backgroundColor = .backgroundColor
+        navigationController.toolbar.backgroundColor = .backgroundColor
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
