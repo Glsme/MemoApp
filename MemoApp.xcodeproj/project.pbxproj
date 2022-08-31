@@ -15,6 +15,9 @@
 		8570320428BF344800D25CAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8570320228BF344800D25CAB /* LaunchScreen.storyboard */; };
 		8570320E28BF35F500D25CAB /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570320D28BF35F500D25CAB /* BaseView.swift */; };
 		8570321028BF368000D25CAB /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570320F28BF368000D25CAB /* BaseViewController.swift */; };
+		8570321228BF376B00D25CAB /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321128BF376B00D25CAB /* MemoListViewController.swift */; };
+		8570321428BF384A00D25CAB /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321328BF384A00D25CAB /* MemoListView.swift */; };
+		8570321728BF3EB200D25CAB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8570321628BF3EB200D25CAB /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,8 @@
 		8570320528BF344800D25CAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8570320D28BF35F500D25CAB /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		8570320F28BF368000D25CAB /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8570321128BF376B00D25CAB /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
+		8570321328BF384A00D25CAB /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8570321728BF3EB200D25CAB /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +82,8 @@
 		8570320B28BF35C700D25CAB /* MemoList */ = {
 			isa = PBXGroup;
 			children = (
+				8570321128BF376B00D25CAB /* MemoListViewController.swift */,
+				8570321328BF384A00D25CAB /* MemoListView.swift */,
 			);
 			path = MemoList;
 			sourceTree = "<group>";
@@ -105,6 +113,9 @@
 			dependencies = (
 			);
 			name = MemoApp;
+			packageProductDependencies = (
+				8570321628BF3EB200D25CAB /* SnapKit */,
+			);
 			productName = MemoApp;
 			productReference = 857031F428BF344800D25CAB /* MemoApp.app */;
 			productType = "com.apple.product-type.application";
@@ -133,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 857031EB28BF344800D25CAB;
+			packageReferences = (
+				8570321528BF3EB200D25CAB /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 857031F528BF344800D25CAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -162,7 +176,9 @@
 			files = (
 				8570321028BF368000D25CAB /* BaseViewController.swift in Sources */,
 				857031FC28BF344800D25CAB /* ViewController.swift in Sources */,
+				8570321228BF376B00D25CAB /* MemoListViewController.swift in Sources */,
 				857031F828BF344800D25CAB /* AppDelegate.swift in Sources */,
+				8570321428BF384A00D25CAB /* MemoListView.swift in Sources */,
 				857031FA28BF344800D25CAB /* SceneDelegate.swift in Sources */,
 				8570320E28BF35F500D25CAB /* BaseView.swift in Sources */,
 			);
@@ -317,8 +333,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,7 +346,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -345,8 +363,10 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,7 +376,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -382,6 +402,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8570321528BF3EB200D25CAB /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8570321628BF3EB200D25CAB /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8570321528BF3EB200D25CAB /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 857031EC28BF344800D25CAB /* Project object */;
 }
