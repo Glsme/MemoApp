@@ -19,6 +19,7 @@
 		8570321428BF384A00D25CAB /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321328BF384A00D25CAB /* MemoListView.swift */; };
 		8570321728BF3EB200D25CAB /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8570321628BF3EB200D25CAB /* SnapKit */; };
 		8570321A28BF42A900D25CAB /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321928BF42A900D25CAB /* ReusableProtocol.swift */; };
+		8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		8570321128BF376B00D25CAB /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		8570321328BF384A00D25CAB /* MemoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListView.swift; sourceTree = "<group>"; };
 		8570321928BF42A900D25CAB /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				8570321128BF376B00D25CAB /* MemoListViewController.swift */,
 				8570321328BF384A00D25CAB /* MemoListView.swift */,
+				8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */,
 			);
 			path = MemoList;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8570321028BF368000D25CAB /* BaseViewController.swift in Sources */,
+				8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */,
 				857031FC28BF344800D25CAB /* ViewController.swift in Sources */,
 				8570321228BF376B00D25CAB /* MemoListViewController.swift in Sources */,
 				857031F828BF344800D25CAB /* AppDelegate.swift in Sources */,

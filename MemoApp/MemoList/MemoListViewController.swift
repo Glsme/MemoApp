@@ -18,8 +18,12 @@ class MemoListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func configureUI() {
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
+        mainView.memoListTableView.register(UITableViewCell.self, forCellReuseIdentifier: MemoListTableViewCell.reuseIdentifier)
     }
 }
 
@@ -29,7 +33,9 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
+        
+        return cell
     }
     
     
