@@ -17,6 +17,16 @@ class MemoListView: BaseView {
         return view
     }()
     
+    let memoToolbar: UIToolbar = {
+        let view = UIToolbar()
+        let memoButton = UIBarButtonItem()
+        memoButton.image = UIImage(systemName: "square.and.pencil")
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        view.setItems([flexibleSpace, memoButton], animated: true)
+        
+        return view
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -26,14 +36,20 @@ class MemoListView: BaseView {
     }
     
     override func configureUI() {
-        [memoListTableView].forEach {
+        [memoListTableView, memoToolbar].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
+        memoToolbar.snp.makeConstraints { make in
+            make.leading.bottom.trailing.equalTo(self.safeAreaLayoutGuide)
+//            make.height.equalTo(44)
+        }
+        
         memoListTableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide)
+            make.leading.top.trailing.equalTo(self.safeAreaLayoutGuide)
+            make.bottom.equalTo(memoToolbar.snp.top)
         }
     }
 }

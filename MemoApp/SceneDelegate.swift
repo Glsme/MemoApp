@@ -21,6 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         let viewController = MemoListViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.topItem?.title = "title"
+        navigationController.navigationBar.backgroundColor = .darkGray
+        navigationController.toolbar.backgroundColor = .darkGray
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
