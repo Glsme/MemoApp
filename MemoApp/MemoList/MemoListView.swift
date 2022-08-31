@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 class MemoListView: BaseView {
     
     let memoListTableView: UITableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
+        view.backgroundColor = .black
         
         return view
     }()
@@ -24,10 +26,14 @@ class MemoListView: BaseView {
     }
     
     override func configureUI() {
-        
+        [memoListTableView].forEach {
+            self.addSubview($0)
+        }
     }
     
     override func setConstraints() {
-        
+        memoListTableView.snp.makeConstraints { make in
+            make.edges.equalTo(self.safeAreaLayoutGuide)
+        }
     }
 }
