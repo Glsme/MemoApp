@@ -13,6 +13,7 @@
 		857031FF28BF344800D25CAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857031FD28BF344800D25CAB /* Main.storyboard */; };
 		8570320128BF344800D25CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8570320028BF344800D25CAB /* Assets.xcassets */; };
 		8570320428BF344800D25CAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8570320228BF344800D25CAB /* LaunchScreen.storyboard */; };
+		8570320E28BF35F500D25CAB /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570320D28BF35F500D25CAB /* BaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		8570320028BF344800D25CAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8570320328BF344800D25CAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8570320528BF344800D25CAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8570320D28BF35F500D25CAB /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,8 @@
 		857031F628BF344800D25CAB /* MemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				8570320C28BF35DF00D25CAB /* Utility */,
+				8570320B28BF35C700D25CAB /* MemoList */,
 				857031F728BF344800D25CAB /* AppDelegate.swift */,
 				857031F928BF344800D25CAB /* SceneDelegate.swift */,
 				857031FB28BF344800D25CAB /* ViewController.swift */,
@@ -65,6 +69,21 @@
 				8570320528BF344800D25CAB /* Info.plist */,
 			);
 			path = MemoApp;
+			sourceTree = "<group>";
+		};
+		8570320B28BF35C700D25CAB /* MemoList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MemoList;
+			sourceTree = "<group>";
+		};
+		8570320C28BF35DF00D25CAB /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				8570320D28BF35F500D25CAB /* BaseView.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,6 +160,7 @@
 				857031FC28BF344800D25CAB /* ViewController.swift in Sources */,
 				857031F828BF344800D25CAB /* AppDelegate.swift in Sources */,
 				857031FA28BF344800D25CAB /* SceneDelegate.swift in Sources */,
+				8570320E28BF35F500D25CAB /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
