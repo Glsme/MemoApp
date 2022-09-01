@@ -15,7 +15,7 @@ class UserMemo: Object {
     
     @Persisted(primaryKey: true) var objectId: ObjectId
     
-    convenience init(memoTitle: String, memoContent: String, date: Date) {
+    convenience init(memoTitle: String, memoContent: String?, date: Date) {
         self.init()
         self.memoTitle = memoTitle
         self.memoContent = memoContent

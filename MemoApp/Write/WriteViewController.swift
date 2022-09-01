@@ -34,8 +34,15 @@ class WriteViewController: BaseViewController {
     }
     
     @objc func saveButtonClicked() {
-        dismiss(animated: true)
+        guard let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty else {
+            showAlert(message: "메모를 입력해주세요")
+            return
+        }
+        
+        let task = UserMemo(memoTitle: title, memoContent: nil, date: Date())
+        UserMemoRepository.shared.write(task)
+        
+        self.navigationController?.popViewController(animated: true)
     }
-    
     
 }

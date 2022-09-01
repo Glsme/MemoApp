@@ -26,6 +26,8 @@
 		85EE9D6028C0E40300BFA754 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 85EE9D5F28C0E40300BFA754 /* Realm */; };
 		85EE9D6228C0E40300BFA754 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 85EE9D6128C0E40300BFA754 /* RealmSwift */; };
 		85EE9D6528C0EAF200BFA754 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D6428C0EAF200BFA754 /* RealmModel.swift */; };
+		85EE9D6728C0ECDC00BFA754 /* UserMemoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D6628C0ECDC00BFA754 /* UserMemoRepository.swift */; };
+		85EE9D6928C0ED0400BFA754 /* UserMemoRepositoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D6828C0ED0400BFA754 /* UserMemoRepositoryType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,8 @@
 		85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		85EE9D5A28C0AA4400BFA754 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		85EE9D6428C0EAF200BFA754 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		85EE9D6628C0ECDC00BFA754 /* UserMemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMemoRepository.swift; sourceTree = "<group>"; };
+		85EE9D6828C0ED0400BFA754 /* UserMemoRepositoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMemoRepositoryType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				8570321928BF42A900D25CAB /* ReusableProtocol.swift */,
+				85EE9D6828C0ED0400BFA754 /* UserMemoRepositoryType.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				85EE9D6428C0EAF200BFA754 /* RealmModel.swift */,
+				85EE9D6628C0ECDC00BFA754 /* UserMemoRepository.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -233,6 +239,7 @@
 			files = (
 				8570321028BF368000D25CAB /* BaseViewController.swift in Sources */,
 				85EE9D5928C0AA2700BFA754 /* WriteViewController.swift in Sources */,
+				85EE9D6928C0ED0400BFA754 /* UserMemoRepositoryType.swift in Sources */,
 				8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */,
 				857031FC28BF344800D25CAB /* ViewController.swift in Sources */,
 				8570321228BF376B00D25CAB /* MemoListViewController.swift in Sources */,
@@ -241,6 +248,7 @@
 				857031FA28BF344800D25CAB /* SceneDelegate.swift in Sources */,
 				85EE9D5B28C0AA4400BFA754 /* WriteView.swift in Sources */,
 				8570321A28BF42A900D25CAB /* ReusableProtocol.swift in Sources */,
+				85EE9D6728C0ECDC00BFA754 /* UserMemoRepository.swift in Sources */,
 				8570320E28BF35F500D25CAB /* BaseView.swift in Sources */,
 				85EE9D6528C0EAF200BFA754 /* RealmModel.swift in Sources */,
 				8570321F28BF507F00D25CAB /* UIColor+Extension.swift in Sources */,

@@ -6,10 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MemoListViewController: BaseViewController {
     
     let mainView = MemoListView()
+    
+    var tasks: Results<UserMemo>! {
+        didSet {
+            mainView.memoListTableView.reloadData()
+        }
+    }
     
     override func loadView() {
         self.view = mainView
@@ -18,6 +25,8 @@ class MemoListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
+        print("Realm is located at:", UserMemoRepository.shared.localRealm.configuration.fileURL!)    // Realm file directory
     }
     
     let memoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: nil, action: #selector(memoButtonClicked))
@@ -48,7 +57,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
