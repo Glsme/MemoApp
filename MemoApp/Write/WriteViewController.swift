@@ -19,4 +19,22 @@ class WriteViewController: BaseViewController {
         super.viewDidLoad()
 
     }
+    
+    override func configureUI() {
+        self.navigationController?.navigationBar.tintColor = .orange
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
+            UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
+        ]
+    }
+    
+    @objc func shareButtonClicked() {
+        
+    }
+    
+    @objc func saveButtonClicked() {
+        
+    }
+    
+    
 }
