@@ -20,10 +20,19 @@ class MemoListViewController: BaseViewController {
         
     }
     
+    let memoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: nil, action: #selector(memoButtonClicked))
+    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+    
     override func configureUI() {
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
         mainView.memoListTableView.register(UITableViewCell.self, forCellReuseIdentifier: MemoListTableViewCell.reuseIdentifier)
+        memoButton.tintColor = .orange
+        mainView.memoToolbar.setItems([flexibleSpace, memoButton], animated: true)
+    }
+    
+    @objc func memoButtonClicked() {
+        print(#function)
     }
 }
 

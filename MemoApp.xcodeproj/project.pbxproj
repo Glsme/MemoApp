@@ -21,6 +21,8 @@
 		8570321A28BF42A900D25CAB /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321928BF42A900D25CAB /* ReusableProtocol.swift */; };
 		8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */; };
 		8570321F28BF507F00D25CAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321E28BF507F00D25CAB /* UIColor+Extension.swift */; };
+		85EE9D5928C0AA2700BFA754 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */; };
+		85EE9D5B28C0AA4400BFA754 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D5A28C0AA4400BFA754 /* WriteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		8570321928BF42A900D25CAB /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		8570321E28BF507F00D25CAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
+		85EE9D5A28C0AA4400BFA754 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,7 @@
 		857031F628BF344800D25CAB /* MemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				85EE9D5728C0AA0C00BFA754 /* Write */,
 				8570321D28BF507100D25CAB /* Extension */,
 				8570321828BF423100D25CAB /* Protocol */,
 				8570320C28BF35DF00D25CAB /* Utility */,
@@ -120,6 +125,15 @@
 				8570321E28BF507F00D25CAB /* UIColor+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		85EE9D5728C0AA0C00BFA754 /* Write */ = {
+			isa = PBXGroup;
+			children = (
+				85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */,
+				85EE9D5A28C0AA4400BFA754 /* WriteView.swift */,
+			);
+			path = Write;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,12 +214,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8570321028BF368000D25CAB /* BaseViewController.swift in Sources */,
+				85EE9D5928C0AA2700BFA754 /* WriteViewController.swift in Sources */,
 				8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */,
 				857031FC28BF344800D25CAB /* ViewController.swift in Sources */,
 				8570321228BF376B00D25CAB /* MemoListViewController.swift in Sources */,
 				857031F828BF344800D25CAB /* AppDelegate.swift in Sources */,
 				8570321428BF384A00D25CAB /* MemoListView.swift in Sources */,
 				857031FA28BF344800D25CAB /* SceneDelegate.swift in Sources */,
+				85EE9D5B28C0AA4400BFA754 /* WriteView.swift in Sources */,
 				8570321A28BF42A900D25CAB /* ReusableProtocol.swift in Sources */,
 				8570320E28BF35F500D25CAB /* BaseView.swift in Sources */,
 				8570321F28BF507F00D25CAB /* UIColor+Extension.swift in Sources */,

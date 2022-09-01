@@ -23,10 +23,6 @@ class MemoListView: BaseView {
         return view
     }()
     
-    let memoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: nil, action: #selector(memoButtonClicked))
-    
-    let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -36,10 +32,6 @@ class MemoListView: BaseView {
     }
     
     override func configureUI() {
-        memoButton.image = UIImage(systemName: "square.and.pencil")
-        memoButton.tintColor = .orange
-        
-        memoToolbar.setItems([flexibleSpace, memoButton], animated: true)
         
         [memoListTableView, memoToolbar].forEach {
             self.addSubview($0)
@@ -56,9 +48,5 @@ class MemoListView: BaseView {
             make.leading.top.trailing.equalTo(self.safeAreaLayoutGuide)
             make.bottom.equalTo(memoToolbar.snp.top)
         }
-    }
-    
-    @objc func memoButtonClicked() {
-        print(#function)
     }
 }
