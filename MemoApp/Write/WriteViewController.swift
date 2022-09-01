@@ -34,7 +34,7 @@ class WriteViewController: BaseViewController {
     }
     
     @objc func saveButtonClicked() {
-        
+        dismiss(animated: true)
     }
     
     
