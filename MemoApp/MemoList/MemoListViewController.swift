@@ -29,13 +29,23 @@ class MemoListViewController: BaseViewController {
         print("Realm is located at:", UserMemoRepository.shared.localRealm.configuration.fileURL!)    // Realm file directory
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchRealm()
+    }
+    
+    func fetchRealm() {
+        tasks = UserMemoRepository.shared.fetch()
+    }
+    
     let memoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: nil, action: #selector(memoButtonClicked))
     let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
     override func configureUI() {
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
-        mainView.memoListTableView.register(UITableViewCell.self, forCellReuseIdentifier: MemoListTableViewCell.reuseIdentifier)
+        mainView.memoListTableView.register(MemoListTableViewCell.self, forCellReuseIdentifier: MemoListTableViewCell.reuseIdentifier)
         memoButton.tintColor = .orange
         mainView.memoToolbar.setItems([flexibleSpace, memoButton], animated: true)
     }
@@ -53,7 +63,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,6 +72,9 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
+        
+        cell.titleLabel.text = tasks[indexPath.row].memoTitle
+        cell.subtitleLabel.text = String(describing: tasks[indexPath.row].date)
         
         return cell
     }

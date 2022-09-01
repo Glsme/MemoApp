@@ -21,4 +21,8 @@ class UserMemoRepository {
             localRealm.add(task)
         }
     }
+    
+    func fetch() -> Results<UserMemo> {
+        return localRealm.objects(UserMemo.self).sorted(byKeyPath: "date", ascending: false)
+    }
 }

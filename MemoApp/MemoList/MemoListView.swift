@@ -13,7 +13,7 @@ class MemoListView: BaseView {
     let memoListTableView: UITableView = {
         let view = UITableView(frame: .zero, style: .insetGrouped)
         view.backgroundColor = .backgroundColor
-        
+        view.rowHeight = 60
         return view
     }()
     
