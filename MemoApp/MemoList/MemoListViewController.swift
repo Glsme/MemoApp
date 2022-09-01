@@ -33,6 +33,8 @@ class MemoListViewController: BaseViewController {
     
     @objc func memoButtonClicked() {
         print(#function)
+        let vc = WriteViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
