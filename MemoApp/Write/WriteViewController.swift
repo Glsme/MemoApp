@@ -26,6 +26,7 @@ class WriteViewController: BaseViewController {
             UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
             UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
         ]
+        mainView.memoTextView.becomeFirstResponder()
     }
     
     @objc func shareButtonClicked() {

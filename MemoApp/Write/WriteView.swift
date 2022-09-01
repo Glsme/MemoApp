@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class WriteView: BaseView {
-    let memoTextField: UITextView = {
+    let memoTextView: UITextView = {
         let view = UITextView()
         view.backgroundColor = .tableViewCellColor
         view.font = .systemFont(ofSize: 16, weight: .medium)
@@ -29,11 +29,11 @@ class WriteView: BaseView {
     }
     
     override func configureUI() {
-        self.addSubview(memoTextField)
+        self.addSubview(memoTextView)
     }
     
     override func setConstraints() {
-        memoTextField.snp.makeConstraints { make in
+        memoTextView.snp.makeConstraints { make in
             make.edges.equalTo(self.safeAreaLayoutGuide)
         }
     }
