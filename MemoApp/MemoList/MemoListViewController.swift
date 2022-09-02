@@ -12,6 +12,8 @@ class MemoListViewController: BaseViewController {
     
     let mainView = MemoListView()
     
+    var filterMemoList: [Results<UserMemo>] = []
+    
     var tasks: Results<UserMemo>! {
         didSet {
             mainView.memoListTableView.reloadData()
@@ -26,7 +28,8 @@ class MemoListViewController: BaseViewController {
         super.viewDidLoad()
         
         tasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
-        print("Realm is located at:", UserMemoRepository.shared.localRealm.configuration.fileURL!)    // Realm file directory
+        print("Realm is located at:", UserMemoRepository.shared.localRealm.configuration.fileURL!)
+        self.setSearchController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +57,15 @@ class MemoListViewController: BaseViewController {
         print(#function)
         let vc = WriteViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func setSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "검색할 메모를 입력해주세요"
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
     }
 }
 
@@ -94,5 +106,13 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         delete.backgroundColor = .red
         
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+}
+
+extension MemoListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text?.lowercased() else { return }
+        
+        print(text)
     }
 }
