@@ -20,8 +20,6 @@ class MemoListViewController: BaseViewController {
         }
     }
     
-    var pinnedTasks: Results<UserMemoPinned>!
-    
     override func loadView() {
         self.view = mainView
     }
@@ -41,7 +39,6 @@ class MemoListViewController: BaseViewController {
     
     func fetchRealm() {
         normalTasks = UserMemoRepository.shared.fetchUserMemo()
-        pinnedTasks = UserMemoRepository.shared.fetchUserMemoPinned()
     }
     
     let memoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: nil, action: #selector(memoButtonClicked))
@@ -49,7 +46,6 @@ class MemoListViewController: BaseViewController {
     
     override func configureUI() {
         normalTasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
-        pinnedTasks = UserMemoRepository.shared.localRealm.objects(UserMemoPinned.self)
 
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
@@ -79,70 +75,26 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         let header = UILabel()
         header.font = .systemFont(ofSize: 25, weight: .bold)
         
-        if pinnedTasks.isEmpty {
-            if normalTasks.isEmpty {
-                header.text = "고정된 메모"
-            } else {
-                header.text = "메모"
-            }
-        } else {
-            if section == 0 {
-                header.text = "고정된 메모"
-            } else if section == 1 {
-                header.text = "메모"
-            }
-        }
-        
         return header
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if pinnedTasks.isEmpty, normalTasks.isEmpty {
-            return 0
-        } else if !pinnedTasks.isEmpty, !normalTasks.isEmpty {
-            return 2
-        } else {
-            return 1
-        }
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if pinnedTasks.isEmpty {
-            return normalTasks.count
-        } else {
-            if section == 0 {
-                return pinnedTasks.count
-            } else if section == 1 {
-                return normalTasks.count
-            } else {
-                return 0
-            }
-        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
         
-        if indexPath.section == 0 {
-            if !normalTasks.isEmpty {
-                print("!!!!!!!!!!", pinnedTasks.count, normalTasks.count)
-                cell.titleLabel.text = normalTasks[indexPath.row].memoTitle
-                cell.subtitleLabel.text = String(describing: normalTasks[indexPath.row].date)
-            } else if !pinnedTasks.isEmpty {
-                cell.titleLabel.text = pinnedTasks[indexPath.row].memoTitle
-                cell.subtitleLabel.text = String(describing: pinnedTasks[indexPath.row].date)
-            }
-        } else {
-            cell.titleLabel.text = normalTasks[indexPath.row].memoTitle
-            cell.subtitleLabel.text = String(describing: normalTasks[indexPath.row].date)
-        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-            UserMemoRepository.shared.updatePinned(self.normalTasks[indexPath.row])
             self.fetchRealm()
         }
         
