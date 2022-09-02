@@ -28,7 +28,13 @@ class UserMemoRepository {
         }
     }
     
-    func fetchUserMemo() -> Results<UserMemo> {
+    func fetch() -> Results<UserMemo> {
         return localRealm.objects(UserMemo.self).sorted(byKeyPath: "date", ascending: false)
+    }
+    
+    func updatePinned(_ task: UserMemo) {
+        try! localRealm.write {
+            task.pin = !task.pin
+        }
     }
 }
