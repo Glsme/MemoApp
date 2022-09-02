@@ -72,14 +72,19 @@ class MemoListViewController: BaseViewController {
 extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UILabel()
-        header.font = .systemFont(ofSize: 30, weight: .bold)
-        header.text = "메모"
+        header.font = .systemFont(ofSize: 25, weight: .bold)
+        
+        if section == 0 {
+            header.text = "고정된 메모"
+        } else if section == 1 {
+            header.text = "메모"
+        }
         
         return header
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

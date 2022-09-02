@@ -39,7 +39,7 @@ class WriteViewController: BaseViewController {
             return
         }
         
-        let task = UserMemo(memoTitle: title, memoContent: nil, date: Date())
+        let task = UserMemo(memoTitle: title, memoContent: nil, date: Date(), pin: false)
         UserMemoRepository.shared.write(task)
         
         self.navigationController?.popViewController(animated: true)
