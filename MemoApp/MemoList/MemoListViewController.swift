@@ -14,11 +14,13 @@ class MemoListViewController: BaseViewController {
     
     var filterMemoList: [Results<UserMemo>] = []
     
-    var tasks: Results<UserMemo>! {
+    var normalTasks: Results<UserMemo>! {
         didSet {
             mainView.memoListTableView.reloadData()
         }
     }
+    
+    var pinnedTasks: Results<UserMemoPinned>!
     
     override func loadView() {
         self.view = mainView
@@ -26,9 +28,8 @@ class MemoListViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
-        print("Realm is located at:", UserMemoRepository.shared.localRealm.configuration.fileURL!)
+                
+//        print("Realm is located at:", UserMemoRepository.shared.localRealm.configuration.fileURL!)
         self.setSearchController()
     }
     
@@ -39,13 +40,17 @@ class MemoListViewController: BaseViewController {
     }
     
     func fetchRealm() {
-        tasks = UserMemoRepository.shared.fetch()
+        normalTasks = UserMemoRepository.shared.fetchUserMemo()
+        pinnedTasks = UserMemoRepository.shared.fetchUserMemoPinned()
     }
     
     let memoButton = UIBarButtonItem(image: UIImage(systemName: "square.and.pencil"), style: .plain, target: nil, action: #selector(memoButtonClicked))
     let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
     
     override func configureUI() {
+        normalTasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
+        pinnedTasks = UserMemoRepository.shared.localRealm.objects(UserMemoPinned.self)
+
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
         mainView.memoListTableView.register(MemoListTableViewCell.self, forCellReuseIdentifier: MemoListTableViewCell.reuseIdentifier)
@@ -74,39 +79,74 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         let header = UILabel()
         header.font = .systemFont(ofSize: 25, weight: .bold)
         
-        if section == 0 {
-            header.text = "고정된 메모"
-        } else if section == 1 {
-            header.text = "메모"
+        if pinnedTasks.isEmpty {
+            if normalTasks.isEmpty {
+                header.text = "고정된 메모"
+            } else {
+                header.text = "메모"
+            }
+        } else {
+            if section == 0 {
+                header.text = "고정된 메모"
+            } else if section == 1 {
+                header.text = "메모"
+            }
         }
         
         return header
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if pinnedTasks.isEmpty, normalTasks.isEmpty {
+            return 0
+        } else if !pinnedTasks.isEmpty, !normalTasks.isEmpty {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        if pinnedTasks.isEmpty {
+            return normalTasks.count
+        } else {
+            if section == 0 {
+                return pinnedTasks.count
+            } else if section == 1 {
+                return normalTasks.count
+            } else {
+                return 0
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
         
-        cell.titleLabel.text = tasks[indexPath.row].memoTitle
-        cell.subtitleLabel.text = String(describing: tasks[indexPath.row].date)
+        if indexPath.section == 0 {
+            if !normalTasks.isEmpty {
+                print("!!!!!!!!!!", pinnedTasks.count, normalTasks.count)
+                cell.titleLabel.text = normalTasks[indexPath.row].memoTitle
+                cell.subtitleLabel.text = String(describing: normalTasks[indexPath.row].date)
+            } else if !pinnedTasks.isEmpty {
+                cell.titleLabel.text = pinnedTasks[indexPath.row].memoTitle
+                cell.subtitleLabel.text = String(describing: pinnedTasks[indexPath.row].date)
+            }
+        } else {
+            cell.titleLabel.text = normalTasks[indexPath.row].memoTitle
+            cell.subtitleLabel.text = String(describing: normalTasks[indexPath.row].date)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-            UserMemoRepository.shared.updatePinned(self.tasks[indexPath.row])
+            UserMemoRepository.shared.updatePinned(self.normalTasks[indexPath.row])
             self.fetchRealm()
         }
         
-        let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+        let image = normalTasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
         pinned.image = UIImage(systemName: image)
         pinned.backgroundColor = .orange
         
@@ -115,7 +155,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
-            let task = self.tasks[indexPath.row]
+            let task = self.normalTasks[indexPath.row]
             
             UserMemoRepository.shared.delete(task)
             self.fetchRealm()
