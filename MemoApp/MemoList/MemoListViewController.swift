@@ -100,6 +100,19 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
+            UserMemoRepository.shared.updatePinned(self.tasks[indexPath.row])
+            self.fetchRealm()
+        }
+        
+        let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+        pinned.image = UIImage(systemName: image)
+        pinned.backgroundColor = .orange
+        
+        return UISwipeActionsConfiguration(actions: [pinned])
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             let task = self.tasks[indexPath.row]
