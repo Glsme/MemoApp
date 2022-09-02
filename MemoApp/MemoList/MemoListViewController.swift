@@ -93,7 +93,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         memoList = tasks.filter { $0.pin == false }
         memoListPinned = tasks.filter { $0.pin == true }
-//        print("!!!!!!!\(memoListPinned.count), \(memoList.count)")
+        print("!!!!!!!\(memoListPinned.count), \(memoList.count)")
         
         if memoListPinned.isEmpty, memoList.isEmpty {
             return 0
@@ -136,17 +136,60 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-            UserMemoRepository.shared.updatePinned(self.tasks[indexPath.row])
+        
+        var low = UserMemo(memoTitle: "", memoContent: nil, date: Date(), pin: false)
+        
+        switch indexPath.section {
+        case 0:
+            if !memoListPinned.isEmpty {
+                low = memoListPinned[indexPath.row]
+            } else {
+                low = memoList[indexPath.row]
+            }
             
-            self.fetchRealm()
+            let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
+                UserMemoRepository.shared.updatePinned(low)
+                self.fetchRealm()
+            }
+            
+            let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+            pinned.image = UIImage(systemName: image)
+            pinned.backgroundColor = .orange
+            
+            return UISwipeActionsConfiguration(actions: [pinned])
+        case 1:
+            low = memoList[indexPath.row]
+            
+            let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
+                UserMemoRepository.shared.updatePinned(low)
+                self.fetchRealm()
+            }
+            
+            let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+            pinned.image = UIImage(systemName: image)
+            pinned.backgroundColor = .orange
+            
+            return UISwipeActionsConfiguration(actions: [pinned])
+        default:
+            let low = memoList[indexPath.row]
+            
+            let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
+                UserMemoRepository.shared.updatePinned(low)
+                self.fetchRealm()
+            }
+            
+            let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+            pinned.image = UIImage(systemName: image)
+            pinned.backgroundColor = .orange
+            
+            return UISwipeActionsConfiguration(actions: [pinned])
         }
         
-        let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
-        pinned.image = UIImage(systemName: image)
-        pinned.backgroundColor = .orange
+//        let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+//        pinned.image = UIImage(systemName: image)
+//        pinned.backgroundColor = .orange
         
-        return UISwipeActionsConfiguration(actions: [pinned])
+//        return UISwipeActionsConfiguration(actions: [pinned])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
