@@ -22,6 +22,12 @@ class UserMemoRepository {
         }
     }
     
+    func delete(_ task: UserMemo) {
+        try! localRealm.write {
+            localRealm.delete(task)
+        }
+    }
+    
     func fetch() -> Results<UserMemo> {
         return localRealm.objects(UserMemo.self).sorted(byKeyPath: "date", ascending: false)
     }

@@ -58,8 +58,12 @@ class MemoListViewController: BaseViewController {
 }
 
 extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Header"
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UILabel()
+        header.font = .systemFont(ofSize: 30, weight: .bold)
+        header.text = "메모"
+        
+        return header
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,5 +83,16 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
+            let task = self.tasks[indexPath.row]
+            
+            UserMemoRepository.shared.delete(task)
+            self.fetchRealm()
+        }
+        
+        delete.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
 }
