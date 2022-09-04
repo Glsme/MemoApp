@@ -20,8 +20,13 @@ class WriteViewController: BaseViewController {
 
     }
     
-    override func configureUI() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.navigationController?.navigationBar.topItem?.title = "메모"
+    }
+    
+    override func configureUI() {
         self.navigationController?.navigationBar.tintColor = .orange
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
@@ -40,9 +45,26 @@ class WriteViewController: BaseViewController {
             return
         }
         
-        let task = UserMemo(memoTitle: title, memoContent: nil, date: Date(), pin: false)
-        UserMemoRepository.shared.write(task)
+        if let primaryKey = UserMemoRepository.shared.primaryKey {
+            
+            
+//            let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }
+//            print(result)
+            
+            for task in UserMemoRepository.shared.localRealm.objects(UserMemo.self) {
+                if task.objectId == primaryKey {
+                    UserMemoRepository.shared.updateMemo(task, memoTitle: title, memoContent: nil, date: Date())
+                    UserMemoRepository.shared.primaryKey = nil
+                    break
+                }
+            }
+            
+        } else {
+            let task = UserMemo(memoTitle: title, memoContent: nil, date: Date(), pin: false)
+            UserMemoRepository.shared.write(task)
+        }
         
+        print("End Function")
         self.navigationController?.popViewController(animated: true)
     }
     

@@ -45,6 +45,8 @@ class MemoListViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         fetchRealm()
+        self.navigationController?.navigationBar.topItem?.title = changeNumberFormat(for: tasks.count) + "개의 메모"
+        print(self.navigationController?.navigationBar.topItem?.title)
     }
     
     func fetchRealm() {
@@ -56,7 +58,6 @@ class MemoListViewController: BaseViewController {
     
     override func configureUI() {
         tasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
-        self.navigationController?.navigationBar.topItem?.title = changeNumberFormat(for: tasks.count) + "개의 메모"
         
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
@@ -223,6 +224,25 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         delete.backgroundColor = .red
         
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = WriteViewController()
+        
+        if indexPath.section == 0 {
+            if !memoListPinned.isEmpty {
+                UserMemoRepository.shared.primaryKey = memoListPinned[indexPath.row].objectId
+                print(UserMemoRepository.shared.primaryKey)
+                vc.mainView.memoTextView.text = memoListPinned[indexPath.row].memoTitle
+                
+            } else {
+                vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle
+            }
+        } else {
+            vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle
+        }
+        
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

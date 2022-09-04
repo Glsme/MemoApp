@@ -15,6 +15,8 @@ class UserMemoRepository {
     private init() { }
     
     let localRealm = try! Realm()
+
+    var primaryKey: ObjectId?
     
     func write(_ task: UserMemo) {
         try! localRealm.write {
@@ -35,6 +37,14 @@ class UserMemoRepository {
     func updatePinned(_ task: UserMemo) {
         try! localRealm.write {
             task.pin = !task.pin
+        }
+    }
+    
+    func updateMemo(_ task: UserMemo, memoTitle: String, memoContent: String?, date: Date) {
+        try! localRealm.write {
+            task.memoTitle = memoTitle
+            task.memoContent = memoContent
+            task.date = Date()
         }
     }
 }
