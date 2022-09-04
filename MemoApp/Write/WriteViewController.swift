@@ -21,6 +21,7 @@ class WriteViewController: BaseViewController {
     }
     
     override func configureUI() {
+        self.navigationController?.navigationBar.topItem?.title = "메모"
         self.navigationController?.navigationBar.tintColor = .orange
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
