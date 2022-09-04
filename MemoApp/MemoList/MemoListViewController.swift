@@ -228,6 +228,8 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         let ok = UIAlertAction(title: "확인", style: .default) { _ in
             UserMemoRepository.shared.delete(task)
             self.fetchRealm()
+            
+            self.navigationController?.navigationBar.topItem?.title = self.changeNumberFormat(for: self.tasks.count) + "개의 메모"
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         
