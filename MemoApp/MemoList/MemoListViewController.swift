@@ -115,8 +115,31 @@ class MemoListViewController: BaseViewController {
             newDateFormatter.dateFormat = "a:hh:mm"
             return newDateFormatter.string(from: date)
         } else {
-            newDateFormatter.dateFormat = "yyyy.MM.dd a:hh:mm"
-            return newDateFormatter.string(from: date)
+            
+            newDateFormatter.dateFormat = "yyyy-MM-dd-e"
+            let day = newDateFormatter.string(from: currentDate)
+            print("!!!!!!!!", day)
+            let today = day.components(separatedBy: "-")
+            
+            guard let interval = Double(today[3]) else { return "" }
+            let startDay = Date(timeIntervalSinceNow: -(86400 * (interval - 1)))
+            let week = newDateFormatter.string(from: startDay)
+            let weekArray = week.components(separatedBy: "-").map { Int($0)! }
+            
+            let dateComponents = DateComponents(year: weekArray[0], month: weekArray[1], day: weekArray[2])
+            let startDate = Calendar.current.date(from: dateComponents)!
+            let offsetComps = Calendar.current.dateComponents([.day], from: startDate, to: date)
+            
+            guard let day = offsetComps.day else { return "" }
+            print(day, "만큼 차이난다")
+            
+            if day >= 0 {
+                newDateFormatter.dateFormat = "eeee"
+                return newDateFormatter.string(from: date)
+            } else {
+                newDateFormatter.dateFormat = "yyyy.MM.dd a:hh:mm"
+                return newDateFormatter.string(from: date)
+            }
         }
     }
     
@@ -152,7 +175,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         memoList = tasks.filter { $0.pin == false }
         memoListPinned = tasks.filter { $0.pin == true }
-        print("!!!!!!!\(memoListPinned.count), \(memoList.count)")
+//        print("!!!!!!!\(memoListPinned.count), \(memoList.count)")
         
         if isFiltering {
             return 1
