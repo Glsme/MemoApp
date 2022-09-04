@@ -40,7 +40,7 @@ class UserMemoRepository {
         }
     }
     
-    func updateMemo(_ task: UserMemo, memoTitle: String, memoContent: String?, date: Date) {
+    func updateMemo(_ task: UserMemo, memoTitle: String, memoContent: String, date: Date) {
         try! localRealm.write {
             task.memoTitle = memoTitle
             task.memoContent = memoContent

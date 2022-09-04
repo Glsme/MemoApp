@@ -152,14 +152,14 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0  {
             if !memoListPinned.isEmpty {
                 cell.titleLabel.text = memoListPinned[indexPath.row].memoTitle
-                cell.subtitleLabel.text = changeDateFormat(date: memoListPinned[indexPath.row].date)
+                cell.subtitleLabel.text = changeDateFormat(date: memoListPinned[indexPath.row].date) + " " + memoListPinned[indexPath.row].memoContent
             } else {
                 cell.titleLabel.text = memoList[indexPath.row].memoTitle
-                cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date)
+                cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + " " + memoList[indexPath.row].memoContent
             }
         } else {
             cell.titleLabel.text = memoList[indexPath.row].memoTitle
-            cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date)
+            cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + " " + memoList[indexPath.row].memoContent
         }
         
         return cell
@@ -167,7 +167,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        var low = UserMemo(memoTitle: "", memoContent: nil, date: Date(), pin: false)
+        var low = UserMemo(memoTitle: "", memoContent: "", date: Date(), pin: false)
         
         switch indexPath.section {
         case 0:
