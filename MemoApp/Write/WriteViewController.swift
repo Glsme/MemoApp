@@ -82,7 +82,7 @@ class WriteViewController: BaseViewController {
                     var text = title.components(separatedBy: "\n")
                     memoTitle = text[0]
                     text.removeFirst()
-                    //                    memoContent = text.reduce("") { $0 + "\n" + $1 }
+//                    memoContent = text.reduce("") { $0 + "\n" + $1 }
                     for item in text {
                         memoContent += item + "\n"
                     }
@@ -105,7 +105,10 @@ class WriteViewController: BaseViewController {
                     var text = title.components(separatedBy: "\n")
                     memoTitle = text[0]
                     text.removeFirst()
-                    memoContent = text.reduce("") { $0 + "\n" + $1 }
+
+                    for item in text {
+                        memoContent += item + "\n"
+                    }
                 } else {
                     memoTitle = title
                 }
