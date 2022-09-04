@@ -88,6 +88,7 @@ class MemoListViewController: BaseViewController {
         mainView.memoListTableView.register(MemoListTableViewCell.self, forCellReuseIdentifier: MemoListTableViewCell.reuseIdentifier)
         memoButton.tintColor = .orange
         mainView.memoToolbar.setItems([flexibleSpace, memoButton], animated: true)
+        mainView.memoListTableView.keyboardDismissMode = .onDrag
     }
     
     @objc func memoButtonClicked() {
