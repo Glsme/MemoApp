@@ -213,9 +213,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             let task = self.tasks[indexPath.row]
-            
-            UserMemoRepository.shared.delete(task)
-            self.fetchRealm()
+            self.showDeleteMemoAlert(task)
         }
         
         let image = UIImage(systemName: "trash.fill")
@@ -225,10 +223,21 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [delete])
     }
     
+    func showDeleteMemoAlert(_ task: UserMemo) {
+        let alert = UIAlertController(title: "주의", message: "메모를 정말 삭제하시겠습니까?", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "확인", style: .default) { _ in
+            UserMemoRepository.shared.delete(task)
+            self.fetchRealm()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = WriteViewController()
-        
-        print("Enter Editing Page")
         
         if indexPath.section == 0 {
             if !memoListPinned.isEmpty {
