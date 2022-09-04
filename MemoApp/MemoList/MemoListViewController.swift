@@ -152,44 +152,33 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 self.fetchRealm()
             }
             
-            let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+            let image = tasks[indexPath.row].pin ? "pin.slash" : "pin.fill"
             pinned.image = UIImage(systemName: image)
             pinned.backgroundColor = .orange
             
             return UISwipeActionsConfiguration(actions: [pinned])
         case 1:
+            print("case 1")
             low = memoList[indexPath.row]
             
             let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-                UserMemoRepository.shared.updatePinned(low)
-                self.fetchRealm()
+                if self.memoListPinned.count >= 5 {
+                    self.showAlert(message: "고정할 수 있는 최대 메모 개수는 5개입니다.")
+                    
+                } else {
+                    UserMemoRepository.shared.updatePinned(low)
+                    self.fetchRealm()
+                }
             }
             
-            let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
+            let image = tasks[indexPath.row].pin ? "pin.slash" : "pin.fill"
             pinned.image = UIImage(systemName: image)
             pinned.backgroundColor = .orange
             
             return UISwipeActionsConfiguration(actions: [pinned])
         default:
-            let low = memoList[indexPath.row]
-            
-            let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
-                UserMemoRepository.shared.updatePinned(low)
-                self.fetchRealm()
-            }
-            
-            let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
-            pinned.image = UIImage(systemName: image)
-            pinned.backgroundColor = .orange
-            
-            return UISwipeActionsConfiguration(actions: [pinned])
+            return nil
         }
-        
-//        let image = tasks[indexPath.row].pin ? "pin.fill" : "pin.slash"
-//        pinned.image = UIImage(systemName: image)
-//        pinned.backgroundColor = .orange
-        
-//        return UISwipeActionsConfiguration(actions: [pinned])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
