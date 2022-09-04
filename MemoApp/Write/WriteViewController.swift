@@ -11,17 +11,16 @@ class WriteViewController: BaseViewController {
     
     let mainView = WriteView()
     
-    let saveButton = UIBarButtonItem(title: "완료", style: .plain, target: nil, action: #selector(saveButtonClicked))
+    let saveButton = UIBarButtonItem(title: "완료", style: .plain, target: nil, action: #selector(saveData))
     let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: nil, action: #selector(shareButtonClicked))
-    let backButton = UIBarButtonItem(title: "〈 메모", style: .plain, target: nil, action: #selector(backButtonClicked))
     
     override func loadView() {
         self.view = mainView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +32,15 @@ class WriteViewController: BaseViewController {
     override func configureUI() {
         mainView.memoTextView.delegate = self
         self.navigationController?.navigationBar.tintColor = .orange
-        self.navigationItem.leftBarButtonItem = backButton
+        
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
+        button.setTitle("메모", for: .normal)
+        button.sizeToFit()
+        button.addTarget(self, action: #selector(saveData), for: .touchUpInside)
+        
+        let leftBarButton = UIBarButtonItem(customView: button)
+        navigationItem.leftBarButtonItems = [leftBarButton]
         
         if UserMemoRepository.shared.primaryKey == nil {
             self.navigationItem.rightBarButtonItems = [saveButton, shareButton]
@@ -48,13 +55,7 @@ class WriteViewController: BaseViewController {
         self.present(activityViewController, animated: true)
     }
     
-    @objc func saveButtonClicked() {
-        print(#function)
-        editMemo()
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func backButtonClicked() {
+    @objc func saveData() {
         editMemo()
         self.navigationController?.popViewController(animated: true)
     }
@@ -66,9 +67,9 @@ class WriteViewController: BaseViewController {
         // 메모 편집
         if let primaryKey = UserMemoRepository.shared.primaryKey {
             var task = UserMemo(memoTitle: "", memoContent: "", date: Date(), pin: false)
-//            let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }
-//            print(result)
-
+            //            let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }
+            //            print(result)
+            
             for item in UserMemoRepository.shared.localRealm.objects(UserMemo.self) {
                 if item.objectId == primaryKey {
                     task = item
@@ -81,7 +82,7 @@ class WriteViewController: BaseViewController {
                     var text = title.components(separatedBy: "\n")
                     memoTitle = text[0]
                     text.removeFirst()
-//                    memoContent = text.reduce("") { $0 + "\n" + $1 }
+                    //                    memoContent = text.reduce("") { $0 + "\n" + $1 }
                     for item in text {
                         memoContent += item + "\n"
                     }
@@ -94,7 +95,7 @@ class WriteViewController: BaseViewController {
                 print("delete Data")
                 UserMemoRepository.shared.delete(task)
             }
-    
+            
             UserMemoRepository.shared.primaryKey = nil
         }
         else {
