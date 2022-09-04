@@ -21,6 +21,8 @@
 		8570321A28BF42A900D25CAB /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321928BF42A900D25CAB /* ReusableProtocol.swift */; };
 		8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */; };
 		8570321F28BF507F00D25CAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321E28BF507F00D25CAB /* UIColor+Extension.swift */; };
+		857541AD28C5195F004DD880 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857541AC28C5195F004DD880 /* WalkThroughViewController.swift */; };
+		857541AF28C51994004DD880 /* WalkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857541AE28C51994004DD880 /* WalkThroughView.swift */; };
 		85EE9D5928C0AA2700BFA754 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */; };
 		85EE9D5B28C0AA4400BFA754 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D5A28C0AA4400BFA754 /* WriteView.swift */; };
 		85EE9D6028C0E40300BFA754 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 85EE9D5F28C0E40300BFA754 /* Realm */; };
@@ -46,6 +48,8 @@
 		8570321928BF42A900D25CAB /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		8570321E28BF507F00D25CAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		857541AC28C5195F004DD880 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
+		857541AE28C51994004DD880 /* WalkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughView.swift; sourceTree = "<group>"; };
 		85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		85EE9D5A28C0AA4400BFA754 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		85EE9D6428C0EAF200BFA754 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		857031F628BF344800D25CAB /* MemoApp */ = {
 			isa = PBXGroup;
 			children = (
+				857541AB28C51903004DD880 /* WalkThrough */,
 				85EE9D6328C0EADC00BFA754 /* Realm */,
 				85EE9D5728C0AA0C00BFA754 /* Write */,
 				8570321D28BF507100D25CAB /* Extension */,
@@ -137,6 +142,15 @@
 				8570321E28BF507F00D25CAB /* UIColor+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		857541AB28C51903004DD880 /* WalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+				857541AC28C5195F004DD880 /* WalkThroughViewController.swift */,
+				857541AE28C51994004DD880 /* WalkThroughView.swift */,
+			);
+			path = WalkThrough;
 			sourceTree = "<group>";
 		};
 		85EE9D5728C0AA0C00BFA754 /* Write */ = {
@@ -246,12 +260,14 @@
 				857031F828BF344800D25CAB /* AppDelegate.swift in Sources */,
 				8570321428BF384A00D25CAB /* MemoListView.swift in Sources */,
 				857031FA28BF344800D25CAB /* SceneDelegate.swift in Sources */,
+				857541AD28C5195F004DD880 /* WalkThroughViewController.swift in Sources */,
 				85EE9D5B28C0AA4400BFA754 /* WriteView.swift in Sources */,
 				8570321A28BF42A900D25CAB /* ReusableProtocol.swift in Sources */,
 				85EE9D6728C0ECDC00BFA754 /* UserMemoRepository.swift in Sources */,
 				8570320E28BF35F500D25CAB /* BaseView.swift in Sources */,
 				85EE9D6528C0EAF200BFA754 /* RealmModel.swift in Sources */,
 				8570321F28BF507F00D25CAB /* UIColor+Extension.swift in Sources */,
+				857541AF28C51994004DD880 /* WalkThroughView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

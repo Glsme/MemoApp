@@ -57,6 +57,21 @@ class MemoListViewController: BaseViewController {
         self.navigationController?.navigationBar.topItem?.title = changeNumberFormat(for: tasks.count) + "개의 메모"
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
+        checkFirstRunningApp()
+    }
+    
+    func checkFirstRunningApp() {
+        if UserDefaults.standard.bool(forKey: "first") {
+            let vc = WalkThroughViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            present(vc, animated: true)
+        }
+    }
+    
     func fetchRealm() {
         tasks = UserMemoRepository.shared.fetch()
     }
@@ -66,6 +81,7 @@ class MemoListViewController: BaseViewController {
     
     override func configureUI() {
         tasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
+        self.navigationController?.navigationBar.tintColor = .orange
         
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
