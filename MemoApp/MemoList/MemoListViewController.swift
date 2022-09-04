@@ -310,8 +310,8 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
 extension MemoListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
-        memoListFiltered = tasks.filter { $0.memoTitle.hasPrefix(text) || $0.memoContent.hasPrefix(text) }
-        
+        memoListFiltered = tasks.filter { $0.memoTitle.contains(text) || $0.memoContent.contains(text) }
+        print(text)
         mainView.memoListTableView.reloadData()
     }
 }
