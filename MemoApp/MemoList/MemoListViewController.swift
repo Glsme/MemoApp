@@ -152,13 +152,12 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 self.fetchRealm()
             }
             
-            let image = tasks[indexPath.row].pin ? "pin.slash" : "pin.fill"
+            let image = tasks[indexPath.row].pin ? "pin.slash.fill" : "pin.fill"
             pinned.image = UIImage(systemName: image)
             pinned.backgroundColor = .orange
             
             return UISwipeActionsConfiguration(actions: [pinned])
         case 1:
-            print("case 1")
             low = memoList[indexPath.row]
             
             let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
@@ -171,7 +170,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
-            let image = tasks[indexPath.row].pin ? "pin.slash" : "pin.fill"
+            let image = tasks[indexPath.row].pin ? "pin.slash.fill" : "pin.fill"
             pinned.image = UIImage(systemName: image)
             pinned.backgroundColor = .orange
             
@@ -182,13 +181,15 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
+        let delete = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             let task = self.tasks[indexPath.row]
             
             UserMemoRepository.shared.delete(task)
             self.fetchRealm()
         }
         
+        let image = UIImage(systemName: "trash.fill")
+        delete.image = image
         delete.backgroundColor = .red
         
         return UISwipeActionsConfiguration(actions: [delete])
