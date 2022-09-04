@@ -112,7 +112,7 @@ class WriteViewController: BaseViewController {
                 } else {
                     memoTitle = title
                 }
-                print("hihi")
+                
                 let task = UserMemo(memoTitle: memoTitle, memoContent: memoContent, date: Date(), pin: false)
                 UserMemoRepository.shared.write(task)
             }

@@ -54,7 +54,7 @@ class MemoListViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         fetchRealm()
-        self.navigationController?.navigationBar.topItem?.title = changeNumberFormat(for: tasks.count) + "개의 메모"
+        self.navigationItem.title = changeNumberFormat(for: tasks.count) + "개의 메모"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -82,6 +82,7 @@ class MemoListViewController: BaseViewController {
     override func configureUI() {
         tasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
         self.navigationController?.navigationBar.tintColor = .orange
+        self.navigationItem.title = changeNumberFormat(for: tasks.count) + "개의 메모"
         
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
@@ -118,7 +119,7 @@ class MemoListViewController: BaseViewController {
             
             newDateFormatter.dateFormat = "yyyy-MM-dd-e"
             let day = newDateFormatter.string(from: currentDate)
-            print("!!!!!!!!", day)
+//            print("!!!!!!!!", day)
             let today = day.components(separatedBy: "-")
             
             guard let interval = Double(today[3]) else { return "" }
@@ -131,7 +132,7 @@ class MemoListViewController: BaseViewController {
             let offsetComps = Calendar.current.dateComponents([.day], from: startDate, to: date)
             
             guard let day = offsetComps.day else { return "" }
-            print(day, "만큼 차이난다")
+//            print(day, "만큼 차이난다")
             
             if day >= 0 {
                 newDateFormatter.dateFormat = "eeee"
@@ -351,7 +352,7 @@ extension MemoListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
         memoListFiltered = tasks.filter { $0.memoTitle.contains(text) || $0.memoContent.contains(text) }
-        print(text)
+        
         mainView.memoListTableView.reloadData()
     }
 }
