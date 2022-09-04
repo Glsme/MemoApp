@@ -243,7 +243,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 self.fetchRealm()
             }
             
-            let image = tasks[indexPath.row].pin ? "pin.slash.fill" : "pin.fill"
+            let image = low.pin ? "pin.slash.fill" : "pin.fill"
             pinned.image = UIImage(systemName: image)
             pinned.backgroundColor = .orange
             
@@ -261,7 +261,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             
-            let image = tasks[indexPath.row].pin ? "pin.slash.fill" : "pin.fill"
+            let image = low.pin ? "pin.slash.fill" : "pin.fill"
             pinned.image = UIImage(systemName: image)
             pinned.backgroundColor = .orange
             
