@@ -11,6 +11,10 @@ class WriteViewController: BaseViewController {
     
     let mainView = WriteView()
     
+    let saveButton = UIBarButtonItem(title: "완료", style: .plain, target: nil, action: #selector(saveButtonClicked))
+    let shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: nil, action: #selector(shareButtonClicked))
+    let backButton = UIBarButtonItem(title: "〈 메모", style: .plain, target: nil, action: #selector(backButtonClicked))
+    
     override func loadView() {
         self.view = mainView
     }
@@ -26,24 +30,13 @@ class WriteViewController: BaseViewController {
         self.navigationController?.navigationBar.topItem?.title = "메모"
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if self.isMovingFromParent {
-            editMemo()
-        }
-    }
-    
     override func configureUI() {
         mainView.memoTextView.delegate = self
         self.navigationController?.navigationBar.tintColor = .orange
+        self.navigationItem.leftBarButtonItem = backButton
         
         if UserMemoRepository.shared.primaryKey == nil {
-            self.navigationItem.rightBarButtonItems = [
-                UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
-                UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
-            ]
-            
+            self.navigationItem.rightBarButtonItems = [saveButton, shareButton]
             mainView.memoTextView.becomeFirstResponder()
         }
     }
@@ -56,6 +49,12 @@ class WriteViewController: BaseViewController {
     }
     
     @objc func saveButtonClicked() {
+        print(#function)
+        editMemo()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func backButtonClicked() {
         editMemo()
         self.navigationController?.popViewController(animated: true)
     }
@@ -109,6 +108,7 @@ class WriteViewController: BaseViewController {
                 } else {
                     memoTitle = title
                 }
+                print("hihi")
                 let task = UserMemo(memoTitle: memoTitle, memoContent: memoContent, date: Date(), pin: false)
                 UserMemoRepository.shared.write(task)
             }
@@ -118,9 +118,6 @@ class WriteViewController: BaseViewController {
 
 extension WriteViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
-            UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
-        ]
+        self.navigationItem.rightBarButtonItems = [saveButton, shareButton]
     }
 }
