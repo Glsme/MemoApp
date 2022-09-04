@@ -65,7 +65,7 @@ class MemoListViewController: BaseViewController {
     }
     
     func checkFirstRunningApp() {
-        if UserDefaults.standard.bool(forKey: "first") {
+        if !UserDefaults.standard.bool(forKey: "first") {
             let vc = WalkThroughViewController()
             vc.modalPresentationStyle = .overFullScreen
             present(vc, animated: true)

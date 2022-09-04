@@ -26,7 +26,7 @@ class WalkThroughViewController: BaseViewController {
     }
     
     @objc func okButtonClicked() {
-        UserDefaults.standard.set(false, forKey: "first")
+        UserDefaults.standard.set(true, forKey: "first")
         dismiss(animated: true)
     }
 
