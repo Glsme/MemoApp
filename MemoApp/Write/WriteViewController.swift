@@ -26,7 +26,7 @@ class WriteViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.navigationBar.topItem?.title = "메모"
+//        self.navigationController?.navigationBar.topItem?.title = "메모"
     }
     
     override func configureUI() {

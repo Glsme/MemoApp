@@ -171,8 +171,10 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
         
         if isFiltering {
+            let memoContent = memoListFiltered[indexPath.row].memoContent.components(separatedBy: "\n").reduce(" ") { $0 + " " + $1 }
+            
             cell.titleLabel.text = memoListFiltered[indexPath.row].memoTitle
-            cell.subtitleLabel.text = changeDateFormat(date: memoListFiltered[indexPath.row].date) + " " + memoListFiltered[indexPath.row].memoContent
+            cell.subtitleLabel.text = changeDateFormat(date: memoListFiltered[indexPath.row].date) + memoContent
             
             let searchText = searchController.searchBar.text!
             let titleLabel = NSMutableAttributedString(string: cell.titleLabel.text!)
@@ -190,15 +192,18 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             
             if indexPath.section == 0  {
                 if !memoListPinned.isEmpty {
+                    let memoContent = memoListPinned[indexPath.row].memoContent.components(separatedBy: "\n").reduce(" ") { $0 + " " + $1 }
                     cell.titleLabel.text = memoListPinned[indexPath.row].memoTitle
-                    cell.subtitleLabel.text = changeDateFormat(date: memoListPinned[indexPath.row].date) + " " + memoListPinned[indexPath.row].memoContent
+                    cell.subtitleLabel.text = changeDateFormat(date: memoListPinned[indexPath.row].date) + memoContent
                 } else {
+                    let memoContent = memoList[indexPath.row].memoContent.components(separatedBy: "\n").reduce(" ") { $0 + " " + $1 }
                     cell.titleLabel.text = memoList[indexPath.row].memoTitle
-                    cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + " " + memoList[indexPath.row].memoContent
+                    cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + memoContent
                 }
             } else {
+                let memoContent = memoList[indexPath.row].memoContent.components(separatedBy: "\n").reduce(" ") { $0 + " " + $1 }
                 cell.titleLabel.text = memoList[indexPath.row].memoTitle
-                cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + " " + memoList[indexPath.row].memoContent
+                cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + memoContent
             }
         }
         return cell
