@@ -32,6 +32,7 @@ class WriteViewController: BaseViewController {
             UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
             UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
         ]
+        
         mainView.memoTextView.becomeFirstResponder()
     }
     
@@ -40,6 +41,11 @@ class WriteViewController: BaseViewController {
     }
     
     @objc func saveButtonClicked() {
+        editMemo()
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func editMemo() {
         // 메모 편집
         if let primaryKey = UserMemoRepository.shared.primaryKey {
             var task = UserMemo(memoTitle: "", memoContent: nil, date: Date(), pin: false)
@@ -63,19 +69,13 @@ class WriteViewController: BaseViewController {
             }
     
             UserMemoRepository.shared.primaryKey = nil
-        } else {
-            // 새 메모 작성
-            guard let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty else {
-                showAlert(message: "메모를 입력해주세요")
-                return
-            }
-            
-            let task = UserMemo(memoTitle: title, memoContent: nil, date: Date(), pin: false)
-            UserMemoRepository.shared.write(task)
         }
-        
-        print("End Function")
-        self.navigationController?.popViewController(animated: true)
+        else {
+            // 새 메모 작성
+            if let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty{
+                let task = UserMemo(memoTitle: title, memoContent: nil, date: Date(), pin: false)
+                UserMemoRepository.shared.write(task)
+            }
+        }
     }
-    
 }
