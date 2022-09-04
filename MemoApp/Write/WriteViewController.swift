@@ -40,26 +40,36 @@ class WriteViewController: BaseViewController {
     }
     
     @objc func saveButtonClicked() {
-        guard let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty else {
-            showAlert(message: "메모를 입력해주세요")
-            return
-        }
-        
+        // 메모 편집
         if let primaryKey = UserMemoRepository.shared.primaryKey {
-            
+            var task = UserMemo(memoTitle: "", memoContent: nil, date: Date(), pin: false)
             
 //            let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }
 //            print(result)
-            
-            for task in UserMemoRepository.shared.localRealm.objects(UserMemo.self) {
-                if task.objectId == primaryKey {
-                    UserMemoRepository.shared.updateMemo(task, memoTitle: title, memoContent: nil, date: Date())
-                    UserMemoRepository.shared.primaryKey = nil
+
+            for item in UserMemoRepository.shared.localRealm.objects(UserMemo.self) {
+                if item.objectId == primaryKey {
+                    task = item
                     break
                 }
             }
             
+            if let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty {
+                print("@@@@@@@", title)
+                UserMemoRepository.shared.updateMemo(task, memoTitle: title, memoContent: nil, date: Date())
+            } else {
+                print("delete Data")
+                UserMemoRepository.shared.delete(task)
+            }
+    
+            UserMemoRepository.shared.primaryKey = nil
         } else {
+            // 새 메모 작성
+            guard let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty else {
+                showAlert(message: "메모를 입력해주세요")
+                return
+            }
+            
             let task = UserMemo(memoTitle: title, memoContent: nil, date: Date(), pin: false)
             UserMemoRepository.shared.write(task)
         }

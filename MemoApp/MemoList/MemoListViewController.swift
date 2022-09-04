@@ -46,7 +46,6 @@ class MemoListViewController: BaseViewController {
         
         fetchRealm()
         self.navigationController?.navigationBar.topItem?.title = changeNumberFormat(for: tasks.count) + "개의 메모"
-        print(self.navigationController?.navigationBar.topItem?.title)
     }
     
     func fetchRealm() {
