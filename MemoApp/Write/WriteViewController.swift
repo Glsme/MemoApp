@@ -26,6 +26,14 @@ class WriteViewController: BaseViewController {
         self.navigationController?.navigationBar.topItem?.title = "메모"
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent {
+            editMemo()
+        }
+    }
+    
     override func configureUI() {
         self.navigationController?.navigationBar.tintColor = .orange
         self.navigationItem.rightBarButtonItems = [
