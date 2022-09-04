@@ -12,7 +12,7 @@ class MemoListViewController: BaseViewController {
     
     let mainView = MemoListView()
     
-    var filterMemoList: [Results<UserMemo>] = []
+    var memoListFiltered: [UserMemo] = []
     var memoList: [UserMemo] = []
     var memoListPinned: [UserMemo] = []
     
@@ -20,6 +20,13 @@ class MemoListViewController: BaseViewController {
         didSet {
             mainView.memoListTableView.reloadData()
         }
+    }
+    
+    var isFiltering: Bool {
+        let searchController = self.navigationItem.searchController
+        let isActive = searchController?.isActive ?? false
+        let isSearchBarHasText = searchController?.searchBar.text?.isEmpty == false
+        return isActive && isSearchBarHasText
     }
     
     let formatter: DateFormatter = {
@@ -107,14 +114,18 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         let header = UILabel()
         header.font = .systemFont(ofSize: 25, weight: .bold)
         
-        if section == 0 {
-            if !memoListPinned.isEmpty {
-                header.text = "고정된 메모"
-            } else {
+        if isFiltering {
+            header.text = "\(memoListFiltered.count)개 찾음"
+        } else {
+            if section == 0 {
+                if !memoListPinned.isEmpty {
+                    header.text = "고정된 메모"
+                } else {
+                    header.text = "메모"
+                }
+            } else if section == 1 {
                 header.text = "메모"
             }
-        } else if section == 1 {
-            header.text = "메모"
         }
         
         return header
@@ -125,43 +136,57 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         memoListPinned = tasks.filter { $0.pin == true }
         print("!!!!!!!\(memoListPinned.count), \(memoList.count)")
         
-        if memoListPinned.isEmpty, memoList.isEmpty {
-            return 0
-        } else if !memoListPinned.isEmpty, !memoList.isEmpty {
-            return 2
-        } else {
+        if isFiltering {
             return 1
+        } else {
+            if memoListPinned.isEmpty, memoList.isEmpty {
+                return 0
+            } else if !memoListPinned.isEmpty, !memoList.isEmpty {
+                return 2
+            } else {
+                return 1
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            if !memoListPinned.isEmpty {
-                return memoListPinned.count
+        
+        if isFiltering {
+            return memoListFiltered.count
+        } else {
+            if section == 0 {
+                if !memoListPinned.isEmpty {
+                    return memoListPinned.count
+                } else {
+                    return memoList.count
+                }
             } else {
                 return memoList.count
             }
-        } else {
-            return memoList.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MemoListTableViewCell.reuseIdentifier, for: indexPath) as? MemoListTableViewCell else { return UITableViewCell() }
         
-        if indexPath.section == 0  {
-            if !memoListPinned.isEmpty {
-                cell.titleLabel.text = memoListPinned[indexPath.row].memoTitle
-                cell.subtitleLabel.text = changeDateFormat(date: memoListPinned[indexPath.row].date) + " " + memoListPinned[indexPath.row].memoContent
+        if isFiltering {
+            cell.titleLabel.text = memoListFiltered[indexPath.row].memoTitle
+            cell.subtitleLabel.text = changeDateFormat(date: memoListFiltered[indexPath.row].date) + " " + memoListFiltered[indexPath.row].memoContent
+        } else {
+            
+            if indexPath.section == 0  {
+                if !memoListPinned.isEmpty {
+                    cell.titleLabel.text = memoListPinned[indexPath.row].memoTitle
+                    cell.subtitleLabel.text = changeDateFormat(date: memoListPinned[indexPath.row].date) + " " + memoListPinned[indexPath.row].memoContent
+                } else {
+                    cell.titleLabel.text = memoList[indexPath.row].memoTitle
+                    cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + " " + memoList[indexPath.row].memoContent
+                }
             } else {
                 cell.titleLabel.text = memoList[indexPath.row].memoTitle
                 cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + " " + memoList[indexPath.row].memoContent
             }
-        } else {
-            cell.titleLabel.text = memoList[indexPath.row].memoTitle
-            cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date) + " " + memoList[indexPath.row].memoContent
         }
-        
         return cell
     }
     
@@ -262,6 +287,8 @@ extension MemoListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
         
-        print(text)
+        memoListFiltered = tasks.filter { $0.memoTitle.hasPrefix(text) || $0.memoContent.hasPrefix(text) }
+        
+        mainView.memoListTableView.reloadData()
     }
 }
