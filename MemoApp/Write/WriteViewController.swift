@@ -35,17 +35,24 @@ class WriteViewController: BaseViewController {
     }
     
     override func configureUI() {
+        mainView.memoTextView.delegate = self
         self.navigationController?.navigationBar.tintColor = .orange
-        self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
-            UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
-        ]
         
-        mainView.memoTextView.becomeFirstResponder()
+        if UserMemoRepository.shared.primaryKey == nil {
+            self.navigationItem.rightBarButtonItems = [
+                UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
+                UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
+            ]
+            
+            mainView.memoTextView.becomeFirstResponder()
+        }
     }
     
     @objc func shareButtonClicked() {
+        let activityViewController = UIActivityViewController(activityItems: ["활동 선택하기"], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
         
+        self.present(activityViewController, animated: true)
     }
     
     @objc func saveButtonClicked() {
@@ -106,5 +113,14 @@ class WriteViewController: BaseViewController {
                 UserMemoRepository.shared.write(task)
             }
         }
+    }
+}
+
+extension WriteViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(saveButtonClicked)),
+            UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonClicked))
+        ]
     }
 }
