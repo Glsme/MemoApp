@@ -22,13 +22,21 @@ class MemoListViewController: BaseViewController {
         }
     }
     
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko-KR")
+        formatter.timeZone = TimeZone(abbreviation: "KST")
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
     override func loadView() {
         self.view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         print("Realm is located at:", UserMemoRepository.shared.localRealm.configuration.fileURL!)
         self.setSearchController()
     }
@@ -48,6 +56,7 @@ class MemoListViewController: BaseViewController {
     
     override func configureUI() {
         tasks = UserMemoRepository.shared.localRealm.objects(UserMemo.self)
+        self.navigationController?.navigationBar.topItem?.title = changeNumberFormat(for: tasks.count) + "개의 메모"
         
         mainView.memoListTableView.delegate = self
         mainView.memoListTableView.dataSource = self
@@ -69,6 +78,27 @@ class MemoListViewController: BaseViewController {
         searchController.searchResultsUpdater = self
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    func changeDateFormat(date: Date) -> String {
+        let currentDate = Date()
+        let newDateFormatter = DateFormatter()
+        newDateFormatter.locale = Locale(identifier: "ko-KR")
+        newDateFormatter.timeZone = TimeZone(identifier: "KST")
+        
+        if formatter.string(from: currentDate) == formatter.string(from: date) {
+            newDateFormatter.dateFormat = "a:hh:mm"
+            return newDateFormatter.string(from: date)
+        } else {
+            newDateFormatter.dateFormat = "yyyy.MM.dd a:hh:mm"
+            return newDateFormatter.string(from: date)
+        }
+    }
+    
+    func changeNumberFormat(for number: Int) -> String {
+        let numberFormat = NumberFormatter()
+        numberFormat.numberStyle = .decimal
+        return numberFormat.string(for: number)!
     }
 }
 
@@ -122,14 +152,14 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0  {
             if !memoListPinned.isEmpty {
                 cell.titleLabel.text = memoListPinned[indexPath.row].memoTitle
-                cell.subtitleLabel.text = String(describing: memoListPinned[indexPath.row].date)
+                cell.subtitleLabel.text = changeDateFormat(date: memoListPinned[indexPath.row].date)
             } else {
                 cell.titleLabel.text = memoList[indexPath.row].memoTitle
-                cell.subtitleLabel.text = String(describing: memoList[indexPath.row].date)
+                cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date)
             }
         } else {
             cell.titleLabel.text = memoList[indexPath.row].memoTitle
-            cell.subtitleLabel.text = String(describing: memoList[indexPath.row].date)
+            cell.subtitleLabel.text = changeDateFormat(date: memoList[indexPath.row].date)
         }
         
         return cell

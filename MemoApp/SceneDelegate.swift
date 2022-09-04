@@ -22,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = MemoListViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationBar.topItem?.title = "메모"
         navigationController.navigationBar.backgroundColor = .backgroundColor
         navigationController.toolbar.backgroundColor = .backgroundColor
         
