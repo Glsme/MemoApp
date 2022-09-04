@@ -22,6 +22,8 @@ class MemoListViewController: BaseViewController {
         }
     }
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     var isFiltering: Bool {
         let searchController = self.navigationItem.searchController
         let isActive = searchController?.isActive ?? false
@@ -79,7 +81,6 @@ class MemoListViewController: BaseViewController {
     }
     
     func setSearchController() {
-        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "검색할 메모를 입력해주세요"
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchResultsUpdater = self
@@ -172,7 +173,20 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         if isFiltering {
             cell.titleLabel.text = memoListFiltered[indexPath.row].memoTitle
             cell.subtitleLabel.text = changeDateFormat(date: memoListFiltered[indexPath.row].date) + " " + memoListFiltered[indexPath.row].memoContent
+            
+            let searchText = searchController.searchBar.text!
+            let titleLabel = NSMutableAttributedString(string: cell.titleLabel.text!)
+            let subtitleLabel = NSMutableAttributedString(string: cell.subtitleLabel.text!)
+            
+            titleLabel.addAttribute(.foregroundColor, value: UIColor.orange, range: (cell.titleLabel.text! as NSString).range(of: searchText))
+            subtitleLabel.addAttribute(.foregroundColor, value: UIColor.orange, range: (cell.subtitleLabel.text! as NSString).range(of: searchText))
+            
+            cell.titleLabel.attributedText = titleLabel
+            cell.subtitleLabel.attributedText = subtitleLabel
+            
         } else {
+            cell.titleLabel.textColor = UIColor.textColor
+            cell.subtitleLabel.textColor = UIColor.textColor
             
             if indexPath.section == 0  {
                 if !memoListPinned.isEmpty {
@@ -266,17 +280,22 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = WriteViewController()
         
-        if indexPath.section == 0 {
-            if !memoListPinned.isEmpty {
-                UserMemoRepository.shared.primaryKey = memoListPinned[indexPath.row].objectId
-                vc.mainView.memoTextView.text = memoListPinned[indexPath.row].memoTitle + "\n" + memoListPinned[indexPath.row].memoContent
+        if isFiltering {
+            UserMemoRepository.shared.primaryKey = memoListFiltered[indexPath.row].objectId
+            vc.mainView.memoTextView.text = memoListFiltered[indexPath.row].memoTitle + "\n" + memoListFiltered[indexPath.row].memoContent
+        } else {
+            if indexPath.section == 0 {
+                if !memoListPinned.isEmpty {
+                    UserMemoRepository.shared.primaryKey = memoListPinned[indexPath.row].objectId
+                    vc.mainView.memoTextView.text = memoListPinned[indexPath.row].memoTitle + "\n" + memoListPinned[indexPath.row].memoContent
+                } else {
+                    UserMemoRepository.shared.primaryKey = memoList[indexPath.row].objectId
+                    vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle + "\n" + memoList[indexPath.row].memoContent
+                }
             } else {
                 UserMemoRepository.shared.primaryKey = memoList[indexPath.row].objectId
                 vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle + "\n" + memoList[indexPath.row].memoContent
             }
-        } else {
-            UserMemoRepository.shared.primaryKey = memoList[indexPath.row].objectId
-            vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle + "\n" + memoList[indexPath.row].memoContent
         }
         
         self.navigationController?.pushViewController(vc, animated: true)
@@ -286,7 +305,6 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
 extension MemoListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text?.lowercased() else { return }
-        
         memoListFiltered = tasks.filter { $0.memoTitle.hasPrefix(text) || $0.memoContent.hasPrefix(text) }
         
         mainView.memoListTableView.reloadData()
