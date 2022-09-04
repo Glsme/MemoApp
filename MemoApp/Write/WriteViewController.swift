@@ -46,10 +46,12 @@ class WriteViewController: BaseViewController {
     }
     
     func editMemo() {
+        var memoTitle: String = ""
+        var memoContent: String = ""
+        
         // 메모 편집
         if let primaryKey = UserMemoRepository.shared.primaryKey {
             var task = UserMemo(memoTitle: "", memoContent: "", date: Date(), pin: false)
-            
 //            let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }
 //            print(result)
 
@@ -61,8 +63,19 @@ class WriteViewController: BaseViewController {
             }
             
             if let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty {
-                print("@@@@@@@", title)
-                UserMemoRepository.shared.updateMemo(task, memoTitle: title, memoContent: "", date: Date())
+                if title.contains("\n") {
+                    var text = title.components(separatedBy: "\n")
+                    memoTitle = text[0]
+                    text.removeFirst()
+//                    memoContent = text.reduce("") { $0 + "\n" + $1 }
+                    for item in text {
+                        memoContent += item + "\n"
+                    }
+                } else {
+                    memoTitle = title
+                }
+                
+                UserMemoRepository.shared.updateMemo(task, memoTitle: memoTitle, memoContent: memoContent, date: Date())
             } else {
                 print("delete Data")
                 UserMemoRepository.shared.delete(task)
@@ -73,14 +86,11 @@ class WriteViewController: BaseViewController {
         else {
             // 새 메모 작성
             if let title = mainView.memoTextView.text, !mainView.memoTextView.text!.isEmpty {
-                var memoTitle: String = ""
-                var memoContent: String = ""
-                
                 if title.contains("\n") {
                     var text = title.components(separatedBy: "\n")
                     memoTitle = text[0]
                     text.removeFirst()
-                    memoContent = text.reduce("") { $0 + " " + $1 }
+                    memoContent = text.reduce("") { $0 + "\n" + $1 }
                 } else {
                     memoTitle = title
                 }

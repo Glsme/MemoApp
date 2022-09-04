@@ -228,17 +228,19 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = WriteViewController()
         
+        print("Enter Editing Page")
+        
         if indexPath.section == 0 {
             if !memoListPinned.isEmpty {
                 UserMemoRepository.shared.primaryKey = memoListPinned[indexPath.row].objectId
-                print(UserMemoRepository.shared.primaryKey)
-                vc.mainView.memoTextView.text = memoListPinned[indexPath.row].memoTitle
-                
+                vc.mainView.memoTextView.text = memoListPinned[indexPath.row].memoTitle + "\n" + memoListPinned[indexPath.row].memoContent
             } else {
-                vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle
+                UserMemoRepository.shared.primaryKey = memoList[indexPath.row].objectId
+                vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle + "\n" + memoList[indexPath.row].memoContent
             }
         } else {
-            vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle
+            UserMemoRepository.shared.primaryKey = memoList[indexPath.row].objectId
+            vc.mainView.memoTextView.text = memoList[indexPath.row].memoTitle + "\n" + memoList[indexPath.row].memoContent
         }
         
         self.navigationController?.pushViewController(vc, animated: true)
