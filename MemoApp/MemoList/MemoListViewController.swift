@@ -278,7 +278,6 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
             let pinned = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
                 if self.memoListPinned.count >= 5 {
                     self.showAlert(message: "고정할 수 있는 최대 메모 개수는 5개입니다.")
-                    
                 } else {
                     UserMemoRepository.shared.updatePinned(low)
                     self.fetchRealm()

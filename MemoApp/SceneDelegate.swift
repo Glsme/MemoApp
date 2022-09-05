@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = MemoListViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationBar.backgroundColor = .backgroundColor
+        navigationController.navigationBar.backgroundColor = .naviBarColor
         navigationController.toolbar.backgroundColor = .backgroundColor
         
         window?.rootViewController = navigationController

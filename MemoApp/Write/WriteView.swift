@@ -11,7 +11,7 @@ import SnapKit
 class WriteView: BaseView {
     let memoTextView: UITextView = {
         let view = UITextView()
-        view.backgroundColor = .tableViewCellColor
+        view.backgroundColor = .backgroundColor
         view.font = .systemFont(ofSize: 16, weight: .medium)
         let spacing: CGFloat = 20
         view.textContainerInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
