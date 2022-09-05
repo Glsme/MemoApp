@@ -173,6 +173,10 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
         return header
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60.0
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         memoList = tasks.filter { $0.pin == false }
         memoListPinned = tasks.filter { $0.pin == true }
