@@ -48,7 +48,9 @@ extension AppDelegate {
                 }
             }
             
-            Realm.Configuration.defaultConfiguration = config
         }
+        
+        Realm.Configuration.defaultConfiguration = config
+
     }
 }
