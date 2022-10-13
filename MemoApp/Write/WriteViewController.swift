@@ -70,7 +70,6 @@ class WriteViewController: BaseViewController {
             var task = UserMemo(memoTitle: "", memoContent: "", date: Date(), regDate: Date(), pin: false)
             
             let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }.first
-            print(result)
             
             for item in UserMemoRepository.shared.localRealm.objects(UserMemo.self) {
                 if item.objectId == primaryKey {
@@ -92,7 +91,7 @@ class WriteViewController: BaseViewController {
                     memoTitle = title
                 }
                 
-                UserMemoRepository.shared.updateMemo(task, memoTitle: memoTitle, memoContent: memoContent, date: Date())
+                UserMemoRepository.shared.updateMemo(task, memoTitle: memoTitle, memoContent: memoContent, regDate: Date())
             } else {
                 print("delete Data")
                 UserMemoRepository.shared.delete(task)
