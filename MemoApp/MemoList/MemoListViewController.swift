@@ -256,7 +256,7 @@ extension MemoListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        var low = UserMemo(memoTitle: "", memoContent: "", date: Date(), pin: false)
+        var low = UserMemo(memoTitle: "", memoContent: "", date: Date(), regDate: Date(), pin: false)
         
         switch indexPath.section {
         case 0:

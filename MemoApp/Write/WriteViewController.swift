@@ -66,9 +66,11 @@ class WriteViewController: BaseViewController {
         
         // 메모 편집
         if let primaryKey = UserMemoRepository.shared.primaryKey {
-            var task = UserMemo(memoTitle: "", memoContent: "", date: Date(), pin: false)
-            //            let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }
-            //            print(result)
+            
+            var task = UserMemo(memoTitle: "", memoContent: "", date: Date(), regDate: Date(), pin: false)
+            
+            let result = UserMemoRepository.shared.localRealm.objects(UserMemo.self).filter { $0.objectId == primaryKey }.first
+            print(result)
             
             for item in UserMemoRepository.shared.localRealm.objects(UserMemo.self) {
                 if item.objectId == primaryKey {
@@ -113,7 +115,7 @@ class WriteViewController: BaseViewController {
                     memoTitle = title
                 }
                 
-                let task = UserMemo(memoTitle: memoTitle, memoContent: memoContent, date: Date(), pin: false)
+                let task = UserMemo(memoTitle: memoTitle, memoContent: memoContent, date: Date(), regDate: Date(), pin: false)
                 UserMemoRepository.shared.write(task)
             }
         }

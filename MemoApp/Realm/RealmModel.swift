@@ -12,15 +12,17 @@ class UserMemo: Object {
     @Persisted var memoTitle: String
     @Persisted var memoContent: String
     @Persisted var date = Date()
+    @Persisted var regDate = Date()
     @Persisted var pin : Bool
     
     @Persisted(primaryKey: true) var objectId: ObjectId
     
-    convenience init(memoTitle: String, memoContent: String, date: Date, pin: Bool) {
+    convenience init(memoTitle: String, memoContent: String, date: Date, regDate: Date, pin: Bool) {
         self.init()
         self.memoTitle = memoTitle
         self.memoContent = memoContent
         self.date = date
+        self.regDate = regDate
         self.pin = false
     }
 }

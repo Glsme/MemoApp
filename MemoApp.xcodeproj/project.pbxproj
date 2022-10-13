@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		857031F828BF344800D25CAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857031F728BF344800D25CAB /* AppDelegate.swift */; };
 		857031FA28BF344800D25CAB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857031F928BF344800D25CAB /* SceneDelegate.swift */; };
-		857031FC28BF344800D25CAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857031FB28BF344800D25CAB /* ViewController.swift */; };
 		857031FF28BF344800D25CAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 857031FD28BF344800D25CAB /* Main.storyboard */; };
 		8570320128BF344800D25CAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8570320028BF344800D25CAB /* Assets.xcassets */; };
 		8570320428BF344800D25CAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8570320228BF344800D25CAB /* LaunchScreen.storyboard */; };
@@ -36,7 +35,6 @@
 		857031F428BF344800D25CAB /* MemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		857031F728BF344800D25CAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		857031F928BF344800D25CAB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		857031FB28BF344800D25CAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		857031FE28BF344800D25CAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8570320028BF344800D25CAB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8570320328BF344800D25CAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,7 +97,6 @@
 				8570320B28BF35C700D25CAB /* MemoList */,
 				857031F728BF344800D25CAB /* AppDelegate.swift */,
 				857031F928BF344800D25CAB /* SceneDelegate.swift */,
-				857031FB28BF344800D25CAB /* ViewController.swift */,
 				857031FD28BF344800D25CAB /* Main.storyboard */,
 				8570320028BF344800D25CAB /* Assets.xcassets */,
 				8570320228BF344800D25CAB /* LaunchScreen.storyboard */,
@@ -255,7 +252,6 @@
 				85EE9D5928C0AA2700BFA754 /* WriteViewController.swift in Sources */,
 				85EE9D6928C0ED0400BFA754 /* UserMemoRepositoryType.swift in Sources */,
 				8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */,
-				857031FC28BF344800D25CAB /* ViewController.swift in Sources */,
 				8570321228BF376B00D25CAB /* MemoListViewController.swift in Sources */,
 				857031F828BF344800D25CAB /* AppDelegate.swift in Sources */,
 				8570321428BF384A00D25CAB /* MemoListView.swift in Sources */,
