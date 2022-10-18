@@ -39,7 +39,7 @@ class MemoPreViewController: BaseViewController {
         configuration.backgroundColor = .purple
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         
-        collectionView.collectionViewLayout = layout
+        mainView.memoListCollectionView.collectionViewLayout = layout
         
         cellRegistration = UICollectionView.CellRegistration { cell, indexPath, itemIdentifier in
             
@@ -67,6 +67,8 @@ extension MemoPreViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = memoList[indexPath.item]
         let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
+        
+        return cell
     }
     
     
