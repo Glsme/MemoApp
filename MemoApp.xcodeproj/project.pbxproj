@@ -22,6 +22,8 @@
 		8570321F28BF507F00D25CAB /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8570321E28BF507F00D25CAB /* UIColor+Extension.swift */; };
 		857541AD28C5195F004DD880 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857541AC28C5195F004DD880 /* WalkThroughViewController.swift */; };
 		857541AF28C51994004DD880 /* WalkThroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857541AE28C51994004DD880 /* WalkThroughView.swift */; };
+		85C1381828FE7E3200ACBC8E /* MemoPreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C1381728FE7E3200ACBC8E /* MemoPreViewController.swift */; };
+		85C1381A28FE85B500ACBC8E /* MemoPreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C1381928FE85B500ACBC8E /* MemoPreView.swift */; };
 		85EE9D5928C0AA2700BFA754 /* WriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */; };
 		85EE9D5B28C0AA4400BFA754 /* WriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EE9D5A28C0AA4400BFA754 /* WriteView.swift */; };
 		85EE9D6028C0E40300BFA754 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 85EE9D5F28C0E40300BFA754 /* Realm */; };
@@ -48,6 +50,8 @@
 		8570321E28BF507F00D25CAB /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		857541AC28C5195F004DD880 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 		857541AE28C51994004DD880 /* WalkThroughView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughView.swift; sourceTree = "<group>"; };
+		85C1381728FE7E3200ACBC8E /* MemoPreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoPreViewController.swift; sourceTree = "<group>"; };
+		85C1381928FE85B500ACBC8E /* MemoPreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoPreView.swift; sourceTree = "<group>"; };
 		85EE9D5828C0AA2700BFA754 /* WriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteViewController.swift; sourceTree = "<group>"; };
 		85EE9D5A28C0AA4400BFA754 /* WriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteView.swift; sourceTree = "<group>"; };
 		85EE9D6428C0EAF200BFA754 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
@@ -109,7 +113,9 @@
 			isa = PBXGroup;
 			children = (
 				8570321128BF376B00D25CAB /* MemoListViewController.swift */,
+				85C1381728FE7E3200ACBC8E /* MemoPreViewController.swift */,
 				8570321328BF384A00D25CAB /* MemoListView.swift */,
+				85C1381928FE85B500ACBC8E /* MemoPreView.swift */,
 				8570321B28BF437900D25CAB /* MemoListTableViewCell.swift */,
 			);
 			path = MemoList;
@@ -251,6 +257,7 @@
 				8570321028BF368000D25CAB /* BaseViewController.swift in Sources */,
 				85EE9D5928C0AA2700BFA754 /* WriteViewController.swift in Sources */,
 				85EE9D6928C0ED0400BFA754 /* UserMemoRepositoryType.swift in Sources */,
+				85C1381828FE7E3200ACBC8E /* MemoPreViewController.swift in Sources */,
 				8570321C28BF437900D25CAB /* MemoListTableViewCell.swift in Sources */,
 				8570321228BF376B00D25CAB /* MemoListViewController.swift in Sources */,
 				857031F828BF344800D25CAB /* AppDelegate.swift in Sources */,
@@ -259,6 +266,7 @@
 				857541AD28C5195F004DD880 /* WalkThroughViewController.swift in Sources */,
 				85EE9D5B28C0AA4400BFA754 /* WriteView.swift in Sources */,
 				8570321A28BF42A900D25CAB /* ReusableProtocol.swift in Sources */,
+				85C1381A28FE85B500ACBC8E /* MemoPreView.swift in Sources */,
 				85EE9D6728C0ECDC00BFA754 /* UserMemoRepository.swift in Sources */,
 				8570320E28BF35F500D25CAB /* BaseView.swift in Sources */,
 				85EE9D6528C0EAF200BFA754 /* RealmModel.swift in Sources */,
@@ -420,7 +428,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,6 +436,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hano.MemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -451,7 +462,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +470,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hano.MemoApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
