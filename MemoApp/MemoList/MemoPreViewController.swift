@@ -35,7 +35,7 @@ class MemoPreViewController: BaseViewController {
         mainView.memoListCollectionView.delegate = self
         
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        configuration.showsSeparators = false
+        configuration.showsSeparators = true
         configuration.backgroundColor = .purple
         let layout = UICollectionViewCompositionalLayout.list(using: configuration)
         
